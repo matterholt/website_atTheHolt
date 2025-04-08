@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete evdserything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+    <header>
+        <h1>Tools</h1>
+        <p>Some tool that I have created</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="tools/TESTING">testing</a></li>
+            <li><a href="tools/pearson_square">Pearson Square</a></li>
+            <li>
+                <a href="tools/gestation_calculations">Gestation Calculations</a
+                >
+            </li>
+        </ul>
+    </nav>
+</Layout>
+
+<style>
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 50px;
+    }
+</style>
