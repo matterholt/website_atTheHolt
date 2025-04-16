@@ -3,13 +3,59 @@ import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete evdserything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const missionStatemetns = [
+    "  To regenerate soil health through holistic grazing practices that mimic nature's patterns",
+    "  To raise animals humanely, allowing them to express their natural behaviors on open pasture",
+    "  To produce nutrient-dense food without synthetic chemicals or harmful inputs",
+    "  To serve as stewards of the land, enhancing biodiversity and ecosystem resilience",
+    "  To connect our community directly to sustainable food systems through transparency and education",
+];
 ---
 
 <Layout>
-    <header>
+    <header slot="header">
         <h1>At The Holt Farms</h1>
-        <p class="subtitle">Raising Pastured Protein</p>
+        <p>A small farm that Raises Pastured Protein</p>
     </header>
+    <main slot="main">
+        <h2>What is Raising Pastured Protein</h2>
+        <p>
+            we raise sheep and chickens on healthy pastures using regenerative
+            practices that heal the land while producing exceptionally
+            nutritious food.
+        </p>
+        <div>
+            <h3>How it started</h3>
+            <p>
+                Grew up on a Dairy farm so livestock has always been a part of
+                my life. I have had few flocks of chickens a couple goat and
+                some cows and a rabbit.There was a dry spell prior to 2022 that
+                is when we had the opportunity to raise a couple of Rams. which
+                in turned grew into a flock of 12.
+            </p>
+            <p>
+                There was interest in keeping with the land and a believer of
+                that we should allow nature to do its thing and not try to bend
+                it to our will.
+            </p>
+        </div>
+        <div>
+            <h3>Mission</h3>
+            <ul>
+                {missionStatemetns.map((x) => <li>{x}</li>)}
+            </ul>
+        </div>
+    </main>
+    <footer slot="footer">
+        <nav>
+            <a href="tools">Tools</a>
+        </nav>
+        <div>
+            <h4>Resources</h4>
+            <p>regenartive ag</p>
+        </div>
+    </footer>
 </Layout>
 
 <style>
@@ -19,5 +65,13 @@ import Layout from "../layouts/Layout.astro";
         align-items: center;
         width: 100%;
         padding: 50px;
+    }
+    div {
+    }
+    header,
+    main,
+    footer {
+        width: 100vw;
+        max-width: 1014px;
     }
 </style>
