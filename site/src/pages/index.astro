@@ -1,15 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete evdserything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-
-const missionStatemetns = [
-    "  To regenerate soil health through holistic grazing practices that mimic nature's patterns",
-    "  To raise animals humanely, allowing them to express their natural behaviors on open pasture",
-    "  To produce nutrient-dense food without synthetic chemicals or harmful inputs",
-    "  To serve as stewards of the land, enhancing biodiversity and ecosystem resilience",
-    "  To connect our community directly to sustainable food systems through transparency and education",
+const missionStatements = [
+    "To regenerate soil health through holistic grazing practices that mimic nature's patterns",
+    "To raise animals humanely, allowing them to express their natural behaviors on open pasture",
+    "To produce nutrient-dense food without synthetic chemicals or harmful inputs",
+    "To serve as stewards of the land, enhancing biodiversity and ecosystem resilience",
+    "To connect our community directly to sustainable food systems through transparency and education",
 ];
 ---
 
@@ -17,61 +14,81 @@ const missionStatemetns = [
     <header slot="header">
         <h1>At The Holt Farms</h1>
         <p>A small farm that Raises Pastured Protein</p>
+        <a href="/future-plans">whats on the farm</a>
     </header>
     <main slot="main">
-        <h2>What is Raising Pastured Protein</h2>
-        <p>
-            we raise sheep and chickens on healthy pastures using regenerative
-            practices that heal the land while producing exceptionally
-            nutritious food.
-        </p>
-        <div>
-            <h3>How it started</h3>
+        <section>
+            <h2>What is Raising Pastured Protein</h2>
             <p>
-                Grew up on a Dairy farm so livestock has always been a part of
-                my life. I have had few flocks of chickens a couple goat and
-                some cows and a rabbit.There was a dry spell prior to 2022 that
-                is when we had the opportunity to raise a couple of Rams. which
-                in turned grew into a flock of 12.
+                We raise sheep and chickens on healthy pastures using
+                regenerative practices that heal the land while producing
+                exceptionally nutritious food.
             </p>
+            <a href="/future-plans"> Learn more about our future plans </a>
+        </section>
+        <section>
+            <h3>Farming background</h3>
             <p>
-                There was interest in keeping with the land and a believer of
-                that we should allow nature to do its thing and not try to bend
-                it to our will.
+                I grew up on a Dairy farm so livestock has always been a part of
+                my life. I have had few flocks of chickens a couple of goats and
+                a few cows and one rabbit. Mostly just as a hobby and joy having
+                livestock around the house. There was a dry spell prior to 2022,
+                then early that year is when we had the opportunity to bottle
+                feed a couple of Rams. We had them in the house for a bit, the
+                kiddos had a real laugh with the lambs running through the
+                dinning room. Pastures where established and they where traded
+                for a few ewes and now a flock of 12. Year of 2025 we are adding
+                the largest heritage chicken the Jersey Giants.
             </p>
-        </div>
-        <div>
-            <h3>Mission</h3>
+            <a href="animals/">Our Animals</a>
+        </section>
+        <section>
+            <h3>Reasons why to raise pasture protein</h3>
+            <p>
+                In 2015 one of children was diagnosed with brain cancer which
+                lead us down a road of researching what was in our food and
+                wanting to provide my family with good quality food. Also the to
+                fight the industrialization of our food, I don't believe that
+                animal are designed to be feed a diet that will grow them
+                quickest, I believe that we are here to work with nature not to
+                bend to what suits us.
+            </p>
+            <a href="resources/">Information on Regenerated Agriculture</a>
+        </section>
+        <section>
+            <h3>Main Goals for farm</h3>
+            <p>
+                To provide high quality pasture raised meat and eggs to our
+                community. By giving livestock the nutrients they were designed
+                to eat,and ensure their health and well-being come first. Give
+                the land time to rest and regenerate, by implement regenerative
+                practices.
+            </p>
+            <a href="resources/">Information on Regenerated Agriculture</a>
+        </section>
+        <section>
+            <h3>Mission Statements</h3>
             <ul>
-                {missionStatemetns.map((x) => <li>{x}</li>)}
+                {missionStatements.map((x) => <li>{x}</li>)}
             </ul>
-        </div>
+        </section>
     </main>
-    <footer slot="footer">
-        <nav>
-            <a href="tools">Tools</a>
-        </nav>
-        <div>
-            <h4>Resources</h4>
-            <p>regenartive ag</p>
-        </div>
-    </footer>
 </Layout>
 
 <style>
     header {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
         width: 100%;
         padding: 50px;
     }
-    div {
+    h2,
+    h3 {
+        text-align: center;
     }
-    header,
-    main,
-    footer {
-        width: 100vw;
-        max-width: 1014px;
+    section {
+        margin: 10px 0px;
     }
 </style>

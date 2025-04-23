@@ -1,3 +1,7 @@
+---
+import Footer from "../components/sections/Footer.astro";
+---
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -10,26 +14,35 @@
     <body class="center_layout">
         <slot name="header" />
         <slot name="main" />
-        <slot name="footer" />
+        <Footer />
     </body>
 </html>
 
-<style>
+<style is:global>
     html {
         margin: 0;
         width: 100%;
         height: 100%;
+        background:;
+        color: #c9c9c9;
         background-color: #0f211a;
-        color: #c0c0c0;
-        /* color: #2b4570; */
-        font-size: 30px;
+        font-size: 25px;
+        line-height: 40px;
+        font-family: "Gill Sans", sans-serif;
+        letter-spacing: 2.1px;
     }
 
     .center_layout {
         display: grid;
-        grid-template-rows: 150px 1fr 150px;
+        grid-template-rows: 45vh 1fr 50vh;
         place-items: center;
         margin: 0px 25px;
         gap: 25px;
+    }
+    header,
+    main,
+    footer {
+        width: 100vw;
+        max-width: 1014px;
     }
 </style>
