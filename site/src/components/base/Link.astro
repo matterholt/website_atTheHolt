@@ -1,0 +1,25 @@
+---
+const { text, pathTo } = Astro.props;
+---
+
+<a href={pathTo}>
+    <div class="link-container">
+        {text}
+    </div>
+</a>
+
+<style>
+    .link-container {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 4px;
+        background-color: #f0f0f0;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .link-container:hover {
+        background-color: #e0e0e0;
+    }
+</style>

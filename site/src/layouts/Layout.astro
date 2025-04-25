@@ -11,6 +11,7 @@ import Footer from "../components/sections/Footer.astro";
         <meta name="generator" content={Astro.generator} />
         <title>At the Holt</title>
     </head>
+
     <body class="center_layout">
         <slot name="header" />
         <slot name="main" />
@@ -21,28 +22,22 @@ import Footer from "../components/sections/Footer.astro";
 <style is:global>
     html {
         margin: 0;
-        width: 100%;
-        height: 100%;
-        background:;
         color: #c9c9c9;
         background-color: #0f211a;
-        font-size: 25px;
-        line-height: 40px;
+        font-size: 22px;
         font-family: "Gill Sans", sans-serif;
-        letter-spacing: 2.1px;
     }
 
     .center_layout {
         display: grid;
-        grid-template-rows: 45vh 1fr 50vh;
-        place-items: center;
-        margin: 0px 25px;
+        grid-template-rows: 60vh 1fr 50vh;
+        grid-template-columns: 1fr;
+        justify-items: center;
         gap: 25px;
     }
     header,
     main,
     footer {
-        width: 100vw;
         max-width: 1014px;
     }
 </style>
