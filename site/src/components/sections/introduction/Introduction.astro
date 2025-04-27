@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+
+import { Text, Link } from "../../base";
+
+import pastureProtein from "./images/pastureProtein.png";
+---
+
+<section class="main_section_container introduction_section">
+    <Text tag="h2">What is Raising Pastured Protein</Text>
+    <Image
+        src={pastureProtein}
+        alt="Sheep grazing on pasture along with chickens"
+        width={600}
+        height={400}
+    />
+    <div>
+        <Text tag="p">
+            We raise sheep and chickens on healthy pastures using regenerative
+            practices that heal the land while producing exceptionally
+            nutritious food.
+        </Text>
+        <Text tag="p">
+            Our Sheep are able spend most of the time outside, grazing on fresh
+            grass and eating a balanced diet of hay and grain.
+        </Text>
+        <Text tag="p">
+            Our Chickens are also able to spend most of their time outside,
+            roaming freely and foraging for insects and seeds.
+        </Text>
+    </div>
+    <Link text="How we handle livestock" linkTo="/" />
+</section>
+
+<style>
+    .introduction_section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+</style>

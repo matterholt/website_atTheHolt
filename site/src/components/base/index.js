@@ -1,4 +1,4 @@
-import Link from "./Link";
-import Text from "./Text";
+import Text from "./Text.astro";
+import Link from "./Link.astro";
 
 export { Link, Text };

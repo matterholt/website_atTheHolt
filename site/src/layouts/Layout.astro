@@ -21,9 +21,12 @@ import Footer from "../components/sections/Footer.astro";
 
 <style is:global>
     html {
+        --dark_green: #0f211a;
+        --light_gray: #c9c9c9;
+
         margin: 0;
-        color: #c9c9c9;
-        background-color: #0f211a;
+        color: var(--light_gray);
+        background-color: var(--dark_green);
         font-size: 22px;
         font-family: "Gill Sans", sans-serif;
     }
@@ -39,5 +42,9 @@ import Footer from "../components/sections/Footer.astro";
     main,
     footer {
         max-width: 1014px;
+    }
+    .main_section_container {
+        margin: 10px 5px;
+        min-height: 550px;
     }
 </style>

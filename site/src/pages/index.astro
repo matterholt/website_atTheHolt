@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Text from "../components/base/Text.astro";
-import Link from "../components/base/Link.astro";
+import { Text, Link } from "../components/base";
+import Introduction from "../components/sections/introduction/Introduction.astro";
 
 const missionStatements = [
     "To regenerate soil health through holistic grazing practices that mimic nature's patterns",
@@ -15,23 +15,15 @@ const missionStatements = [
 <Layout>
     <header slot="header">
         <h1>At The Holt<br /> Farms</h1>
-        <Text tag="p">A small farm focus on raises Pastured Protein</Text>
-        <Text tag="p"
-            >Starting with Katahdin sheep and Jersey Giant chickens</Text
-        >
-        <Link text="what we have planned" href="/future-plans" />
+        <div class="header_subtext">
+            <Text tag="p">A small farm focus on raises Pastured Protein</Text>
+            <Text tag="p">Raising Katahdin sheep and Jersey Giant chickens</Text
+            >
+        </div>
+        <Link text="what we have planned" pathTo="/future-plans" />
     </header>
     <main slot="main">
-        <section>
-            <h2>What is Raising Pastured Protein</h2>
-            <Text tag="p">
-                We raise sheep and chickens on healthy pastures using
-                regenerative practices that heal the land while producing
-                exceptionally nutritious food.
-            </Text>
-            <!-- <a href="/future-plans"> Learn more about our future plans </a> -->
-        </section>
-        <hr />
+        <Introduction />
         <section>
             <h3>Farming background</h3>
             <Text tag="p">
@@ -48,7 +40,6 @@ const missionStatements = [
             </Text>
             <!-- <a href="animals/">Our Animals</a> -->
         </section>
-        <hr />
         <section>
             <h3>Reasons why to raise pasture protein</h3>
             <Text tag="p">
@@ -87,16 +78,19 @@ const missionStatements = [
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-evenly;
+        border: solid 2px var(--light_gray);
+        width: 100%;
+        border-radius: 15px;
         h1 {
+            text-align: center;
+        }
+        .header_subtext {
             text-align: center;
         }
     }
     h2,
     h3 {
         text-align: center;
-    }
-    section {
-        margin: 10px 5px;
-        min-height: 550px;
     }
 </style>
