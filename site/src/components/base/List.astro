@@ -1,0 +1,40 @@
+---
+interface internalLinks {
+    url: string;
+    name: string;
+    isActive: boolean;
+}
+interface Props {
+    listItems?: string[];
+    linkList?: internalLinks[];
+    linkType?: string;
+}
+import Link from "./Link.astro";
+const { listItems, linkList, linkType } = Astro.props;
+
+const activeLink = linkList?.filter((item) => item.isActive);
+---
+
+<ul>
+    {
+        linkList
+            ? activeLink?.map((item, index) => (
+                  <li>
+                      <Link
+                          typeOf={linkType}
+                          pathTo={item.url}
+                          text={item.name}
+                      />
+                  </li>
+              ))
+            : null
+    }
+</ul>
+<style>
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+</style>

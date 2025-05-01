@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Text, Link } from "../components/base";
+import { Text, Link, Box } from "../components/base";
 import Introduction from "../components/sections/introduction/Introduction.astro";
 
 const missionStatements = [
@@ -24,7 +24,7 @@ const missionStatements = [
     </header>
     <main slot="main">
         <Introduction />
-        <section>
+        <Box>
             <h3>Farming background</h3>
             <Text tag="p">
                 I grew up on a Dairy farm so livestock has always been a part of
@@ -39,8 +39,8 @@ const missionStatements = [
                 the largest heritage chicken the Jersey Giants.
             </Text>
             <!-- <a href="animals/">Our Animals</a> -->
-        </section>
-        <section>
+        </Box>
+        <Box>
             <h3>Reasons why to raise pasture protein</h3>
             <Text tag="p">
                 In 2015 one of children was diagnosed with brain cancer which
@@ -52,8 +52,8 @@ const missionStatements = [
                 bend to what suits us.
             </Text>
             <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
-        </section>
-        <section>
+        </Box>
+        <Box>
             <h3>Main Goals for farm</h3>
             <Text tag="p">
                 To provide high quality pasture raised meat and eggs to our
@@ -63,13 +63,13 @@ const missionStatements = [
                 practices.
             </Text>
             <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
-        </section>
-        <section>
+        </Box>
+        <Box>
             <h3>Mission Statements</h3>
             <ul>
                 {missionStatements.map((x) => <li>{x}</li>)}
             </ul>
-        </section>
+        </Box>
     </main>
 </Layout>
 

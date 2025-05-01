@@ -1,22 +1,103 @@
+---
+import { Text, List } from "@components/base";
+
+const toolsLinks = [
+    {
+        name: "Pearson Square",
+        url: "/tools/pearson-square",
+        isActive: true,
+        linkType: "internal",
+    },
+    {
+        name: "Gestations Cycles",
+        url: "/tools/gestations-cycles",
+        isActive: true,
+        linkType: "internal",
+    },
+];
+const contactLinks = [
+    {
+        name: "Email",
+        url: "mailto:matthew@attheholt",
+        isActive: true,
+    },
+];
+
+const socialLinks = [
+    {
+        name: "Facebook",
+        linkType: "external",
+        isActive: true,
+        url: "https://www.facebook.com/profile.php?id=61570295491797",
+    },
+];
+
+const otherResources = [
+    {
+        name: "Working Cow Podcast",
+        linkType: "external",
+        isActive: true,
+        url: "https://workingcows.net/",
+    },
+];
+
+const internalLinks = [
+    {
+        name: "Home",
+        url: "/",
+        isActive: true,
+    },
+    {
+        name: "Future Plans",
+        url: "/future-plans",
+        isActive: true,
+    },
+    {
+        name: "Animals",
+        url: "/animals",
+        isActive: true,
+    },
+    {
+        name: "Online Tools",
+        url: "/online-tools",
+        isActive: true,
+    },
+];
+---
+
 <footer class="footer">
     <div>
-        <h4>Resources</h4>
-        <nav>
-            <a href="/tools">Online Tools</a>
-        </nav>
+        <h4>Site Map</h4>
+        <List linkType="simple" linkList={internalLinks} />
+    </div>
+    <div class="footer_contact">
+        <h4>Contact</h4>
+        <List linkType="simple" linkList={contactLinks} />
+        <h4>Social Media</h4>
+
+        <List linkType="simple" linkList={socialLinks} />
     </div>
 
-    <div class="">
-        <h5>contacts</h5>
-        <a href="mailto:matthew@attheholt">matthew@attheholt</a>
+    <div>
+        <h4>Online Tools</h4>
+        <List linkType="simple" linkList={toolsLinks} />
+    </div>
+
+    <div>
+        <h4>Outside Resources</h4>
+        <List linkType="simple" linkList={otherResources} />
     </div>
 </footer>
 
 <style>
     .footer {
-        outline: solid;
         width: 100%;
         display: flex;
         justify-content: space-evenly;
+        margin-bottom: 10px;
+    }
+    .footer_contact {
+        display: flex;
+        flex-direction: column;
     }
 </style>
