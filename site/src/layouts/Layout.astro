@@ -1,5 +1,11 @@
 ---
-import Footer from "../components/sections/Footer.astro";
+interface Props {
+    currentPage: string;
+}
+import Footer from "@components/sections/Footer.astro";
+import NavigationMain from "@components/sections/NavigationMain.astro";
+
+const { currentPage } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,6 +19,7 @@ import Footer from "../components/sections/Footer.astro";
     </head>
 
     <body class="center_layout">
+        <NavigationMain currentPage={currentPage} />
         <slot name="header" />
         <slot name="main" />
         <Footer />
@@ -23,6 +30,7 @@ import Footer from "../components/sections/Footer.astro";
     html {
         --dark_green: #0f211a;
         --light_gray: #c9c9c9;
+        --site_maxWidth: 1014px;
 
         margin: 0;
         color: var(--light_gray);
@@ -32,16 +40,19 @@ import Footer from "../components/sections/Footer.astro";
     }
 
     .center_layout {
-        display: grid;
-        grid-template-rows: 60vh 1fr min-content;
-        grid-template-columns: 1fr;
-        justify-items: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 25px;
+    }
+    main {
+        min-height: 90vh;
     }
     header,
     main,
     footer {
-        max-width: 1014px;
+        max-width: var(--site_maxWidth);
     }
     .main_section_container {
         margin: 10px 5px;

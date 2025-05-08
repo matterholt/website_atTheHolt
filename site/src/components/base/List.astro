@@ -8,18 +8,22 @@ interface Props {
     listItems?: string[];
     linkList?: internalLinks[];
     linkType?: string;
+    currentPage: string;
 }
 import Link from "./Link.astro";
-const { listItems, linkList, linkType } = Astro.props;
+
+const { listItems, linkList, linkType, currentPage } = Astro.props;
 
 const activeLink = linkList?.filter((item) => item.isActive);
+
+const isCurrentPage = (pageId: string) => pageId === currentPage;
 ---
 
 <ul>
     {
         linkList
             ? activeLink?.map((item, index) => (
-                  <li>
+                  <li class:list={[{ currentPage: isCurrentPage(item.url) }]}>
                       <Link
                           typeOf={linkType}
                           pathTo={item.url}
@@ -36,5 +40,14 @@ const activeLink = linkList?.filter((item) => item.isActive);
         margin: 0;
         padding: 0;
         list-style-type: none;
+    }
+    ul {
+        display: flex;
+        justify-content: space-between;
+    }
+    .currentPage {
+        background-color: #868c8a;
+        padding: 2px 10px;
+        border-radius: 10px;
     }
 </style>

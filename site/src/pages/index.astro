@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Text, Link, Box } from "../components/base";
-import Introduction from "../components/sections/introduction/Introduction.astro";
+import { Text, Link, Box } from "@components/base";
+import Introduction from "@components/sections/introduction/Introduction.astro";
+import Header from "@components/sections/Header.astro";
 
 const missionStatements = [
     "To regenerate soil health through holistic grazing practices that mimic nature's patterns",
@@ -12,16 +13,15 @@ const missionStatements = [
 ];
 ---
 
-<Layout>
-    <header slot="header">
-        <h1>At The Holt<br /> Farms</h1>
+<Layout currentPage="/">
+    <Header slot="header">
         <div class="header_subtext">
             <Text tag="p">A small farm focus on raises Pastured Protein</Text>
             <Text tag="p">Raising Katahdin sheep and Jersey Giant chickens</Text
             >
         </div>
         <Link text="what we have planned" pathTo="/future-plans" />
-    </header>
+    </Header>
     <main slot="main">
         <Introduction />
         <Box>
@@ -38,10 +38,10 @@ const missionStatements = [
                 for a few ewes and now a flock of 12. Year of 2025 we are adding
                 the largest heritage chicken the Jersey Giants.
             </Text>
-            <!-- <a href="animals/">Our Animals</a> -->
+            <Link text="On the farm" pathTo="/animals" />
         </Box>
         <Box>
-            <h3>Reasons why to raise pasture protein</h3>
+            <h3>Reasons why to Raise Pasture Protein</h3>
             <Text tag="p">
                 In 2015 one of children was diagnosed with brain cancer which
                 lead us down a road of researching what was in our food and
@@ -74,21 +74,6 @@ const missionStatements = [
 </Layout>
 
 <style>
-    header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        border: solid 2px var(--light_gray);
-        width: 100%;
-        border-radius: 15px;
-        h1 {
-            text-align: center;
-        }
-        .header_subtext {
-            text-align: center;
-        }
-    }
     h2,
     h3 {
         text-align: center;
