@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Text, Link, Box } from "@components/base";
-import Introduction from "@components/sections/introduction/Introduction.astro";
 import Header from "@components/sections/Header.astro";
 
 const missionStatements = [
@@ -16,14 +15,25 @@ const missionStatements = [
 <Layout currentPage="/">
     <Header slot="header">
         <div class="header_subtext">
-            <Text tag="p">A small farm focus on raises Pastured Protein</Text>
-            <Text tag="p">Raising Katahdin sheep and Jersey Giant chickens</Text
-            >
+            <Text tag="p"
+                >A small farm focus on raises Pastured Protein <br /> and explore
+                other way be a caretaker of the soil.
+            </Text>
         </div>
         <Link text="what we have planned" pathTo="/future-plans" />
     </Header>
+
     <main slot="main">
-        <Introduction />
+        <Box>
+            <Text tag="h3">What is the point</Text>
+            <Text tag="p">
+                Building a system that can work off of each other. The system
+                depends on each other to function effectively. Sheep fertilize
+                the ground which helps build soils and grows better plants for
+                the animals.
+            </Text>
+        </Box>
+
         <Box>
             <h3>Farming background</h3>
             <Text tag="p">
@@ -40,6 +50,18 @@ const missionStatements = [
             </Text>
             <Link text="On the farm" pathTo="/animals" />
         </Box>
+
+        <Box>
+            <h3>Main Goals for farm</h3>
+            <Text tag="p">
+                To provide high quality pasture raised meat and eggs to our
+                community. By giving livestock the nutrients they were designed
+                to eat,and ensure their health and well-being come first. Give
+                the land time to rest and regenerate, by implement regenerative
+                practices.
+            </Text>
+            <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
+        </Box>
         <Box>
             <h3>Reasons why to Raise Pasture Protein</h3>
             <Text tag="p">
@@ -53,17 +75,7 @@ const missionStatements = [
             </Text>
             <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
         </Box>
-        <Box>
-            <h3>Main Goals for farm</h3>
-            <Text tag="p">
-                To provide high quality pasture raised meat and eggs to our
-                community. By giving livestock the nutrients they were designed
-                to eat,and ensure their health and well-being come first. Give
-                the land time to rest and regenerate, by implement regenerative
-                practices.
-            </Text>
-            <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
-        </Box>
+
         <Box>
             <h3>Mission Statements</h3>
             <ul>
@@ -72,7 +84,6 @@ const missionStatements = [
         </Box>
     </main>
 </Layout>
-
 <style>
     h2,
     h3 {

@@ -1,13 +1,20 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { Text, Link, Box } from "@components/base";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete evdserything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const content = `- Establish a flock - Grow some wheat - start mushrooms - Get a
+custom grain mill - Raise Jersey Giant Chickens - establish a
+breeding program for chicken - Build a bee hive and swarm box -
+Build a bat house - harvest from our garden - Establish a compost pile`;
 ---
 
 <Layout currentPage="/future-plans">
     <main slot="main">
         <h1>schedules and task to complete</h1>
+        <Box>
+            <Text tag="h2">ROADMAP</Text>
+            {content.split("-").map((x) => <li>{x}</li>)}
+        </Box>
     </main>
 </Layout>
 
