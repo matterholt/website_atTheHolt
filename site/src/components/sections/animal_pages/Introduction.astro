@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
-import { Text, Link } from "../../base";
+import { Box, Text, Link } from "../../base";
 
 import pastureProtein from "./images/pastureProtein.png";
 ---
@@ -14,21 +14,11 @@ import pastureProtein from "./images/pastureProtein.png";
         width={600}
         height={400}
     />
-    <div>
-        <Text tag="p">
-            We raise sheep and chickens on healthy pastures using regenerative
-            practices that heal the land while producing exceptionally
-            nutritious food.
-        </Text>
-        <Text tag="p">
-            Our Sheep are able spend most of the time outside, grazing on fresh
-            grass and eating a balanced diet of hay and grain.
-        </Text>
-        <Text tag="p">
-            Our Chickens are also able to spend most of their time outside,
-            roaming freely and foraging for insects and seeds.
-        </Text>
-    </div>
+    <Text>
+        We raise sheep and chickens on healthy pastures using regenerative
+        practices that heal the land while producing exceptionally nutritious
+        food.
+    </Text>
 </section>
 
 <style>

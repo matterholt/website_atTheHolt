@@ -47,12 +47,12 @@ export const internalLinks = [
   {
     name: "Online Tools",
     url: "/online-tools",
-    isActive: true,
+    isActive: false,
   },
   {
     name: "Future Plans",
     url: "/future-plans",
-    isActive: true,
+    isActive: false,
   },
   {
     name: "Our Animals",
@@ -63,6 +63,6 @@ export const internalLinks = [
   {
     name: "Projects",
     url: "/projects",
-    isActive: true,
+    isActive: false,
   },
 ];

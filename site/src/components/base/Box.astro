@@ -3,6 +3,9 @@
 ---
 
 <section>
+    <div class="box_heading">
+        <slot name="heading" />
+    </div>
     <slot />
 </section>
 
@@ -14,5 +17,8 @@
         display: grid;
         grid-template-rows: 75px 1fr;
         flex-direction: column;
+    }
+    .box_heading {
+        border: solid white 30px;
     }
 </style>
