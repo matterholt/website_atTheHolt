@@ -1,18 +1,46 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete evdserything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const secret = import.meta.env.TEMP_KEY;
+
+const setDate = "2025-05-10";
+const url = `http://localhost:8787/api/v1/livestock/sheep/newborn/date?setdate=${setDate}`;
+
+const response = await fetch(url, {
+    method: "GET",
+    headers: {
+        "X-API-KEY": secret,
+    },
+});
+const data = await response.json();
 ---
 
 <Layout currentPage="/online-tools">
     <main slot="main">
         <h1>Tools</h1>
-        <p>Some tool that I have created</p>
+        <p>key dates for my flock in 2025</p>
+        <p>Set date : {setDate}</p>
+        <ul>
+            {
+                data.map((x) => (
+                    <li>
+                        <p>{x.type}</p>
+                        <p>{x.date}</p>
+                        <p>{x.event}</p>
+                        <p>{x.days}</p>
+                    </li>
+                ))
+            }
+        </ul>
     </main>
 </Layout>
 
 <style>
+    li {
+        width: 550px;
+        display: flex;
+        justify-content: space-between;
+    }
     header {
         display: flex;
         flex-direction: column;
