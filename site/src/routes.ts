@@ -47,7 +47,7 @@ export const internalLinks = [
   {
     name: "Online Tools",
     url: "/online-tools",
-    isActive: true,
+    isActive: false,
   },
   {
     name: "Future Plans",
@@ -57,7 +57,7 @@ export const internalLinks = [
   {
     name: "Our Animals",
     url: "/animals",
-    isActive: true,
+    isActive: false,
   },
 
   {

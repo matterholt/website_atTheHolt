@@ -1,7 +1,11 @@
 ---
+import { Image } from "astro:assets";
+
 import Layout from "../layouts/Layout.astro";
 import { Text, Link, Box } from "@components/base";
 import Header from "@components/sections/Header.astro";
+
+import bigBarn from "../assets/home/barn.png";
 
 const missionStatements = [
     "To regenerate soil health through holistic grazing practices that mimic nature's patterns",
@@ -26,6 +30,12 @@ const missionStatements = [
     </Header>
 
     <main slot="main">
+        <Image
+            src={bigBarn}
+            alt="Sheep grazing on pasture along with chickens"
+            width={1000}
+            height={800}
+        />
         <Box>
             <Text tag="h3">What is the point</Text>
             <Text>
