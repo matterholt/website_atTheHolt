@@ -18,11 +18,19 @@ const missionStatements = [
 
 <Layout currentPage="/">
     <Header slot="header">
+        <div class="header_image">
+            <Image
+                src={bigBarn}
+                alt="Sheep grazing on pasture along with chickens"
+                width={1000}
+                height={800}
+            />
+        </div>
         <div class="header_subtext">
             <Text>
                 Building a farm from scratch focused on regenerative
-                agriculture. Giving opportunities for animals and plant the
-                thrive off of each other. To work with nature bend her to our
+                agriculture. Giving opportunities for animals and plants to
+                thrive off of each other. Work with nature, not bend it to our
                 own desires
             </Text>
         </div>
@@ -30,20 +38,16 @@ const missionStatements = [
     </Header>
 
     <main slot="main">
-        <Image
-            src={bigBarn}
-            alt="Sheep grazing on pasture along with chickens"
-            width={1000}
-            height={800}
-        />
         <Box>
-            <Text tag="h3">What is the point</Text>
+            <h3>Main Goals for farm</h3>
             <Text>
-                Building a system that can work off of each other. The system
-                depends on each other to function effectively. Sheep fertilize
-                the ground which helps build soils and grows better plants for
-                the animals.
+                To provide high quality pasture raised meat and eggs to our
+                community. By giving livestock the nutrients they were designed
+                to eat,and ensure their health and well-being come first. Give
+                the land time to rest and regenerate, by implement regenerative
+                practices.
             </Text>
+            <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
         </Box>
 
         <Box>
@@ -60,20 +64,9 @@ const missionStatements = [
                 for a few ewes and now a flock of 12. Year of 2025 we are adding
                 the largest heritage chicken the Jersey Giants.
             </Text>
-            <Link text="On the farm" pathTo="/animals" />
+            <!-- <Link text="On the farm" pathTo="/animals" /> -->
         </Box>
 
-        <Box>
-            <h3>Main Goals for farm</h3>
-            <Text>
-                To provide high quality pasture raised meat and eggs to our
-                community. By giving livestock the nutrients they were designed
-                to eat,and ensure their health and well-being come first. Give
-                the land time to rest and regenerate, by implement regenerative
-                practices.
-            </Text>
-            <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
-        </Box>
         <Box>
             <h3>Reasons why to Raise Pasture Protein</h3>
             <Text>

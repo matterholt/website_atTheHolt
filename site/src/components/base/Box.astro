@@ -3,22 +3,14 @@
 ---
 
 <section>
-    <div class="box_heading">
-        <slot name="heading" />
-    </div>
     <slot />
 </section>
 
 <style>
     section {
         min-height: 550px;
-        /* margin: 150px 0px; */
-        /* display: flex; */
         display: grid;
         grid-template-rows: 75px 1fr;
         flex-direction: column;
-    }
-    .box_heading {
-        border: solid white 30px;
     }
 </style>
