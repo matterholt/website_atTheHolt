@@ -11,11 +11,43 @@ const { currentPage } = Astro.props;
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
         <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
         <meta name="generator" content={Astro.generator} />
         <title>At the Holt</title>
+
+        <!-- Character encoding -->
+        <meta charset="UTF-8" />
+
+        <!-- Viewport for responsive design -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Description for search engines and previews -->
+        <meta
+            name="description"
+            content="A brief description of your website"
+        />
+
+        <!-- Author information (optional) -->
+        <meta name="author" content="Your Name" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <!-- External CSS -->
+        <!-- <link rel="stylesheet" href="/styles.css" /> -->
+
+        <!-- Optional: External fonts -->
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" /> -->
+
+        <!-- Optional: Social media preview (Open Graph, Twitter) -->
+        <meta property="og:title" content="My Website" />
+        <meta
+            property="og:description"
+            content="A brief description of your website"
+        />
+        <meta property="og:image" content="/preview.jpg" />
+        <meta property="og:url" content="https://www.mywebsite.com" />
+        <meta name="twitter:card" content="summary_large_image" />
     </head>
 
     <body class="center_layout">
@@ -30,17 +62,21 @@ const { currentPage } = Astro.props;
     html {
         --dark_green: #0f211a;
         --light_gray: #c9c9c9;
+
         --site_maxWidth: 1014px;
+        --section_spacing: 70px;
+
+        --main_backgroundColor: var(--light_gray);
+        --main_foregroundColor: var(--dark_green);
 
         margin: 0;
-        color: var(--light_gray);
-        background-color: var(--dark_green);
+        color: var(--main_foregroundColor);
+        background-color: var(--main_backgroundColor);
         font-size: 22px;
         font-family: "Gill Sans", sans-serif;
     }
 
     .center_layout {
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -50,7 +86,7 @@ const { currentPage } = Astro.props;
         min-height: 90vh;
         display: flex;
         flex-direction: column;
-        gap: 150px;
+        gap: var(--section_spacing, 150px);
     }
     header,
     main,

@@ -3,14 +3,21 @@
 ---
 
 <section>
-    <slot />
+    <div class="section-header">
+        <slot name="box_header" />
+    </div>
+
+    <div class="section-content">
+        <slot />
+    </div>
 </section>
 
 <style>
     section {
-        min-height: 550px;
         display: grid;
-        grid-template-rows: 75px 1fr;
-        flex-direction: column;
+        grid-template-rows: 120px 1fr;
+        margin: 25px 15px;
+    }
+    .section-header {
     }
 </style>

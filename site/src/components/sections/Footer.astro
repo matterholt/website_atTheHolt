@@ -1,5 +1,5 @@
 ---
-import { Text, List } from "@components/base";
+import { Text, LinkList } from "@components/base";
 import {
     internalLinks,
     contactLinks,
@@ -12,24 +12,24 @@ import {
 <footer class="footer">
     <div>
         <h4>Site Map</h4>
-        <List linkType="simple" linkList={internalLinks} />
+        <LinkList linkType="simple" linkList={internalLinks} />
     </div>
     <div class="footer_contact">
         <h4>Contact</h4>
-        <List linkType="simple" linkList={contactLinks} />
+        <LinkList linkType="simple" linkList={contactLinks} />
         <h4>Social Media</h4>
 
-        <List linkType="simple" linkList={socialLinks} />
+        <LinkList linkType="simple" linkList={socialLinks} />
     </div>
 
     <div>
         <h4>Online Tools</h4>
-        <List linkType="simple" linkList={toolsLinks} />
+        <LinkList linkType="simple" linkList={toolsLinks} />
     </div>
 
     <div>
         <h4>Outside Resources</h4>
-        <List linkType="simple" linkList={otherResources} />
+        <LinkList linkType="simple" linkList={otherResources} />
     </div>
 </footer>
 

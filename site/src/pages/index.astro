@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
-import { Text, Link, Box } from "@components/base";
+import { Text, LinkList, Box } from "@components/base";
 import Header from "@components/sections/Header.astro";
 
 import bigBarn from "../assets/home/barn.png";
@@ -22,8 +22,7 @@ const missionStatements = [
             <Image
                 src={bigBarn}
                 alt="Sheep grazing on pasture along with chickens"
-                width={1000}
-                height={800}
+                width={375}
             />
         </div>
         <div class="header_subtext">
@@ -31,7 +30,7 @@ const missionStatements = [
                 Building a farm from scratch focused on regenerative
                 agriculture. Giving opportunities for animals and plants to
                 thrive off of each other. Work with nature, not bend it to our
-                own desires
+                own desires.
             </Text>
         </div>
         <!-- <Link text="what we have planned" pathTo="/future-plans" /> -->
@@ -39,19 +38,45 @@ const missionStatements = [
 
     <main slot="main">
         <Box>
-            <h3>Main Goals for farm</h3>
+            <Text tag="h3" slot="box_header"> Main Goals for farm </Text>
+            <Text />
+            <Text> Currently raising Katahdin cross with Dorper. </Text>
+            <Text> Free range chickens for eggs. </Text>
+            <Text>Exploring ways to build a regenerative farm</Text>
+            <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
+        </Box>
+
+        <Box>
+            <Text tag="h3" slot="box_header">Reasons why</Text>
             <Text>
-                To provide high quality pasture raised meat and eggs to our
-                community. By giving livestock the nutrients they were designed
-                to eat,and ensure their health and well-being come first. Give
-                the land time to rest and regenerate, by implement regenerative
-                practices.
+                In 2015 one of children was diagnosed with brain cancer which
+                lead us down a road of researching what was in our food and
+                wanting to provide my family with good quality food. The event
+                lead me to believe that the things we eat are able to provide
+                our body the nutrients it needs to function properly and the
+                help heal.
+            </Text>
+            <Text>
+                Push back on industrialization of our food. What does that
+                exactly mean? I don't think that all modern practices are bad,
+                but we should evaluate them and look at a large scale of the
+                impact of our decisions.
+                <hr />
+                Industrialization of food refers to the process of mass production
+                and distribution of food products using industrial methods. This
+                often involves the use of synthetic fertilizers, pesticides, and
+                genetically modified organisms (GMOs), which can have negative impacts
+                on the environment, human health, and animal welfare.
+                <hr />
+                I don't believe that animal are designed to be feed a diet that will
+                grow them quickest, I believe that we are here to work with nature
+                not to bend to what suits us.
             </Text>
             <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
         </Box>
 
         <Box>
-            <h3>Farming background</h3>
+            <Text tag="h3" slot="box_header">Farming background</Text>
             <Text>
                 I grew up on a Dairy farm so livestock has always been a part of
                 my life. I have had few flocks of chickens a couple of goats and
@@ -61,28 +86,14 @@ const missionStatements = [
                 feed a couple of Rams. We had them in the house for a bit, the
                 kiddos had a real laugh with the lambs running through the
                 dinning room. Pastures where established and they where traded
-                for a few ewes and now a flock of 12. Year of 2025 we are adding
-                the largest heritage chicken the Jersey Giants.
+                for a few ewes, now a flock of 15 and the desired of building my
+                own farm with agriculture best practices.
             </Text>
             <!-- <Link text="On the farm" pathTo="/animals" /> -->
         </Box>
 
         <Box>
-            <h3>Reasons why to Raise Pasture Protein</h3>
-            <Text>
-                In 2015 one of children was diagnosed with brain cancer which
-                lead us down a road of researching what was in our food and
-                wanting to provide my family with good quality food. Also the to
-                fight the industrialization of our food, I don't believe that
-                animal are designed to be feed a diet that will grow them
-                quickest, I believe that we are here to work with nature not to
-                bend to what suits us.
-            </Text>
-            <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
-        </Box>
-
-        <Box>
-            <h3>Mission Statements</h3>
+            <Text tag="h3" slot="box_header">Mission Statements</Text>
             <ul>
                 {missionStatements.map((x) => <li>{x}</li>)}
             </ul>

@@ -3,13 +3,13 @@ interface Props {
     currentPage: string;
 }
 import { internalLinks } from "src/routes";
-import { List } from "@components/base";
+import { LinkList } from "@components/base";
 
 const { currentPage } = Astro.props;
 ---
 
 <nav class="internal_nav_links">
-    <List
+    <LinkList
         currentPage={currentPage}
         linkType="simple"
         linkList={internalLinks}
@@ -17,7 +17,6 @@ const { currentPage } = Astro.props;
 </nav>
 <style>
     .internal_nav_links {
-        min-width: var(--site_maxWidth);
         height: min-content;
     }
 </style>
