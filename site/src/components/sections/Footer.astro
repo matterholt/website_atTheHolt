@@ -1,47 +1,72 @@
 ---
 import { Text, LinkList } from "@components/base";
 import {
-    internalLinks,
-    contactLinks,
-    socialLinks,
-    toolsLinks,
-    otherResources,
+  internalLinks,
+  contactLinks,
+  socialLinks,
+  toolsLinks,
+  otherResources,
 } from "../../routes";
 ---
 
 <footer class="footer">
-    <div>
-        <h4>Site Map</h4>
-        <LinkList linkType="simple" linkList={internalLinks} />
-    </div>
-    <div class="footer_contact">
-        <h4>Contact</h4>
-        <LinkList linkType="simple" linkList={contactLinks} />
-        <h4>Social Media</h4>
+  <div class="footer_container">
+    {
+      internalLinks.some((x) => x.isActive) && (
+        <div>
+          <Text tag="h4">Site Map</Text>
+          <LinkList linkType="simple" linkList={internalLinks} />
+        </div>
+      )
+    }
+    {
+      contactLinks.some((x) => x.isActive) && (
+        <div class="footer_contact">
+          <Text tag="h4">Contact</Text>
+          <LinkList linkType="simple" linkList={contactLinks} />
+        </div>
+      )
+    }
+    {
+      socialLinks.some((x) => x.isActive) && (
+        <div class="footer_contact">
+          <Text tag="h4">Social Media</Text>
+          <LinkList linkType="simple" linkList={socialLinks} />
+        </div>
+      )
+    }
 
-        <LinkList linkType="simple" linkList={socialLinks} />
-    </div>
-
-    <div>
-        <h4>Online Tools</h4>
-        <LinkList linkType="simple" linkList={toolsLinks} />
-    </div>
-
-    <div>
-        <h4>Outside Resources</h4>
-        <LinkList linkType="simple" linkList={otherResources} />
-    </div>
+    {
+      toolsLinks.some((x) => x.isActive) && (
+        <div>
+          <Text tag="h4">Online Tools</Text>
+          <LinkList linkType="simple" linkList={toolsLinks} />
+        </div>
+      )
+    }
+    {
+      otherResources.some((x) => x.isActive) && (
+        <div>
+          <Text tag="h4">Outside Resources</Text>
+          <LinkList linkType="simple" linkList={otherResources} />
+        </div>
+      )
+    }
+  </div>
 </footer>
 
 <style>
-    .footer {
-        width: 100%;
-        display: flex;
-        justify-content: space-evenly;
-        margin-bottom: 10px;
-    }
-    .footer_contact {
-        display: flex;
-        flex-direction: column;
-    }
+  .footer {
+    width: 100%;
+    background-color: var(--dark_green);
+  }
+  .footer_container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+  }
+  .footer_contact {
+    display: flex;
+    flex-direction: column;
+  }
 </style>

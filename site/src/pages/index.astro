@@ -2,17 +2,17 @@
 import { Image } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
-import { Text, LinkList, Box } from "@components/base";
+import { Text, LinkList, Box, Link } from "@components/base";
 import Header from "@components/sections/Header.astro";
 
 import bigBarn from "../assets/home/barn.png";
 
 const missionStatements = [
-    "To regenerate soil health through holistic grazing practices that mimic nature's patterns",
-    "To raise animals humanely, allowing them to express their natural behaviors on open pasture",
     "To produce nutrient-dense food without synthetic chemicals or harmful inputs",
     "To serve as stewards of the land, enhancing biodiversity and ecosystem resilience",
     "To connect our community directly to sustainable food systems through transparency and education",
+    "To raise animals humanely, allowing them to express their natural behaviors on open pasture",
+    "To regenerate soil health through holistic grazing practices that mimic nature's patterns",
 ];
 ---
 
@@ -21,31 +21,41 @@ const missionStatements = [
         <div class="header_image">
             <Image
                 src={bigBarn}
-                alt="Sheep grazing on pasture along with chickens"
+                alt="picture of barn with sheep in a pasture"
                 width={375}
             />
         </div>
         <div class="header_subtext">
             <Text>
-                Building a farm from scratch focused on regenerative
-                agriculture. Giving opportunities for animals and plants to
-                thrive off of each other. Work with nature, not bend it to our
-                own desires.
+                Local farm in the western side of Champaign county. We focus on
+                regenerative, organic farming practices. Research ways for
+                better food.
             </Text>
         </div>
-        <!-- <Link text="what we have planned" pathTo="/future-plans" /> -->
     </Header>
 
     <main slot="main">
         <Box>
-            <Text tag="h3" slot="box_header"> Main Goals for farm </Text>
-            <Text />
-            <Text> Currently raising Katahdin cross with Dorper. </Text>
-            <Text> Free range chickens for eggs. </Text>
-            <Text>Exploring ways to build a regenerative farm</Text>
-            <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
+            <Text tag="h3" slot="box_header">On the Farm</Text>
+            <Text>
+                Currently We are have a flock of Katahdin / Dorper breeding
+                ewes. But we have plans to expand into other livestock and grow
+                organic produce.
+            </Text>
+            <Link text="what we have planned" pathTo="/future-plans" />
         </Box>
-
+        <Box>
+            <Text tag="h3" slot="box_header">Key Practices</Text>
+            <ul>
+                {
+                    missionStatements.map((x) => (
+                        <li>
+                            <Text>{x}</Text>
+                        </li>
+                    ))
+                }
+            </ul>
+        </Box>
         <Box>
             <Text tag="h3" slot="box_header">Reasons why</Text>
             <Text>
@@ -61,20 +71,9 @@ const missionStatements = [
                 exactly mean? I don't think that all modern practices are bad,
                 but we should evaluate them and look at a large scale of the
                 impact of our decisions.
-                <hr />
-                Industrialization of food refers to the process of mass production
-                and distribution of food products using industrial methods. This
-                often involves the use of synthetic fertilizers, pesticides, and
-                genetically modified organisms (GMOs), which can have negative impacts
-                on the environment, human health, and animal welfare.
-                <hr />
-                I don't believe that animal are designed to be feed a diet that will
-                grow them quickest, I believe that we are here to work with nature
-                not to bend to what suits us.
             </Text>
             <!-- <a href="resources/">Information on Regenerated Agriculture</a> -->
         </Box>
-
         <Box>
             <Text tag="h3" slot="box_header">Farming background</Text>
             <Text>
@@ -90,13 +89,6 @@ const missionStatements = [
                 own farm with agriculture best practices.
             </Text>
             <!-- <Link text="On the farm" pathTo="/animals" /> -->
-        </Box>
-
-        <Box>
-            <Text tag="h3" slot="box_header">Mission Statements</Text>
-            <ul>
-                {missionStatements.map((x) => <li>{x}</li>)}
-            </ul>
         </Box>
     </main>
 </Layout>

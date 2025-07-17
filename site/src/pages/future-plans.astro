@@ -1,21 +1,9 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { Text, Link, Box } from "@components/base";
-
-const content = `- Establish a flock - Grow some wheat - start mushrooms - Get a
-custom grain mill - Raise Jersey Giant Chickens - establish a
-breeding program for chicken - Build a bee hive and swarm box -
-Build a bat house - harvest from our garden - Establish a compost pile`;
 ---
 
 <Layout currentPage="/future-plans">
-    <main slot="main">
-        <h1>schedules and task to complete</h1>
-        <Box>
-            <Text tag="h2">ROADMAP</Text>
-            {content.split("-").map((x) => <li>{x}</li>)}
-        </Box>
-    </main>
+    <main slot="main">markdown content</main>
 </Layout>
 
 <style></style>

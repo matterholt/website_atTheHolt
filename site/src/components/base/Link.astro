@@ -1,47 +1,48 @@
 ---
 interface Props {
-    text: string;
-    pathTo: string;
-    typeOf?: string;
+  text: string;
+  pathTo: string;
+  typeOf?: string;
 }
 
-const { text, pathTo, typeOf = "boxed" } = Astro.props;
+const { text, pathTo, typeOf = "simple" } = Astro.props;
 ---
 
 <a href={pathTo} }>
-    <div
-        class:list={[
-            "baseLink",
-            { boxed: typeOf === "boxed" },
-            { simple: typeOf === "simple" },
-        ]}
-    >
-        {text}
-    </div>
+  <div
+    class:list={[
+      "baseLink",
+      { boxed: typeOf === "boxed" },
+      { simple: typeOf === "simple" },
+    ]}
+  >
+    {text}
+  </div>
 </a>
 
 <style>
-    .baseLink {
-        display: inline-block;
-        text-decoration: none;
-        font-weight: 100;
-        font-size: 15px;
-    }
+  .baseLink {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 100;
+    font-size: 15px;
+  }
 
-    .boxed {
-        color: #333;
-        border-radius: 4px;
-        padding: 10px 15px;
-        background-color: #f0f0f0;
-        transition: background-color 0.3s ease;
-    }
-    .boxed:hover {
-        background-color: #e0e0e0;
-    }
-    .simple {
-        color: #f0f0f0;
-    }
-    .simple:active {
-        color: #e0e0e0;
-    }
+  .boxed {
+    color: #333;
+    border-radius: 4px;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+  }
+  .boxed:hover {
+    background-color: #e0e0e0;
+  }
+  .simple {
+    color: var(--foreground, white);
+    border-bottom: 1px solid var(--foreground, white);
+  }
+  .simple:active {
+    color: var(--foreground, white);
+  }
 </style>
