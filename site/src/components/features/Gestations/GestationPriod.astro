@@ -1,0 +1,235 @@
+---
+
+---
+
+<div class="container">
+    <div class="conatiner-header">
+        <div class="sheep-icon">🐑</div>
+        <h1>Sheep Breeding Calculator</h1>
+        <p class="subtitle">Calculate when the ram bred the ewe</p>
+    </div>
+    <div class="container-inputs">
+        <div class="input-group">
+            <label for="birthDate">Lamb's Birth Date</label>
+            <input type="date" id="birthDate" required />
+        </div>
+
+        <div class="input-group">
+            <label>Gestation Period</label>
+            <div class="gestation-selector">
+                <div class="gestation-option" data-days="145">
+                    <span class="gestation-label">Short</span>
+                    <span class="gestation-days">145 days</span>
+                </div>
+                <div class="gestation-option active" data-days="147">
+                    <span class="gestation-label">Standard</span>
+                    <span class="gestation-days">147 days</span>
+                </div>
+                <div class="gestation-option" data-days="150">
+                    <span class="gestation-label">Long</span>
+                    <span class="gestation-days">150 days</span>
+                </div>
+            </div>
+        </div>
+
+        <button id="calculateButton">Calculate Breeding Date</button>
+    </div>
+    <div class="result" id="result">
+        <div class="result-title">Estimated Breeding Date</div>
+        <div class="result-date" id="breedingDate">—</div>
+        <div class="result-details" id="details">—</div>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Tip:</strong> The standard sheep gestation period is 147 days (about
+        5 months), but it can range from 145-150 days depending on breed and other
+        factors.
+    </div>
+</div>
+<script src="./scripts/breedingCalculator.js"></script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 40px;
+        max-width: 500px;
+        width: 100%;
+    }
+    
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 28px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 14px;
+    }
+
+    .sheep-icon {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    .input-group {
+        margin-bottom: 25px;
+    }
+
+    label {
+        display: block;
+        color: #555;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    input[type="date"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+        font-family: inherit;
+    }
+
+    input[type="date"]:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+
+    .gestation-selector {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .gestation-option {
+        flex: 1;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 14px;
+        background: white;
+    }
+
+    .gestation-option:hover {
+        border-color: #667eea;
+    }
+
+    .gestation-option.active {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+    }
+
+    .gestation-label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .gestation-days {
+        font-size: 12px;
+        opacity: 0.8;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+            transform 0.2s,
+            box-shadow 0.2s;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    .result {
+        margin-top: 30px;
+        padding: 25px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 15px;
+        display: none;
+    }
+
+    .result.show {
+        display: block;
+        animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .result-title {
+        color: #555;
+        font-size: 14px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .result-date {
+        color: #333;
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .result-details {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .result-details strong {
+        color: #333;
+    }
+
+    .info-box {
+        background: #f0f4ff;
+        border-left: 4px solid #667eea;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 13px;
+        color: #555;
+    }
+</style>
