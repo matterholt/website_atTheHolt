@@ -1,53 +1,45 @@
 ---
-
+import Html from "@layouts/Html.astro";
 ---
 
-<div class="container">
-    <div class="conatiner-header">
-        <div class="sheep-icon">🐑</div>
-        <h1>Sheep Breeding Calculator</h1>
-        <p class="subtitle">Calculate when the ram bred the ewe</p>
-    </div>
-    <div class="container-inputs">
-        <div class="input-group">
-            <label for="birthDate">Lamb's Birth Date</label>
-            <input type="date" id="birthDate" required />
+<Html>
+    <div class="container container-layout">
+        <div class="conatiner-header">
+            <h1>Sheep Breeding Calculator</h1>
+            <p class="subtitle">Calculate when the ram bred the ewe</p>
         </div>
 
-        <div class="input-group">
-            <label>Gestation Period</label>
-            <div class="gestation-selector">
-                <div class="gestation-option" data-days="145">
-                    <span class="gestation-label">Short</span>
-                    <span class="gestation-days">145 days</span>
-                </div>
-                <div class="gestation-option active" data-days="147">
-                    <span class="gestation-label">Standard</span>
-                    <span class="gestation-days">147 days</span>
-                </div>
-                <div class="gestation-option" data-days="150">
-                    <span class="gestation-label">Long</span>
-                    <span class="gestation-days">150 days</span>
-                </div>
+        <div class="result-dateRange">
+            <div class="dateValue">
+                Short date <span id="shortDateResult">00-00-00</span>
+            </div>
+            <div class="dateValue">
+                Standard date<span id="standardDateResult">00-00-00</span>
+            </div>
+            <div class="dateValue">
+                Long date<span id="longDateResult">00-00-00</span>
             </div>
         </div>
 
-        <button id="calculateButton">Calculate Breeding Date</button>
-    </div>
-    <div class="result" id="result">
-        <div class="result-title">Estimated Breeding Date</div>
-        <div class="result-date" id="breedingDate">—</div>
-        <div class="result-details" id="details">—</div>
+        <div class="container-inputs">
+            <div class="input-group">
+                <label for="birthDate">Lamb's Birth Date</label>
+                <input type="date" id="birthDate" value="2026-02-05" required />
+            </div>
+            <button id="calculateButton">Calculate Breeding Date</button>
+        </div>
+
+        <div class="info-box">
+            <p>
+                The standard sheep gestation period is 147 days (about 5
+                months), but it can range from 145-150 days depending on breed
+                and other factors.
+            </p>
+        </div>
     </div>
 
-    <div class="info-box">
-        <strong>💡 Tip:</strong> The standard sheep gestation period is 147 days (about
-        5 months), but it can range from 145-150 days depending on breed and other
-        factors.
-    </div>
-</div>
-<script src="./scripts/breedingCalculator.js"></script>
-
+    <script src="./scripts/breedingCalculator.js"></script>
+</Html>
 <style>
     * {
         margin: 0;
@@ -55,14 +47,18 @@
         box-sizing: border-box;
     }
     .container {
-        background: white;
-        border-radius: 20px;
+        background: var(--white-color);
+        border-radius: 10px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        padding: 40px;
+        padding: 20px;
         max-width: 500px;
         width: 100%;
     }
-    
+    .container-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
 
     h1 {
         color: #333;
@@ -73,15 +69,8 @@
 
     .subtitle {
         text-align: center;
-        color: #666;
-        margin-bottom: 30px;
+        color: #667;
         font-size: 14px;
-    }
-
-    .sheep-icon {
-        text-align: center;
-        font-size: 50px;
-        margin-bottom: 20px;
     }
 
     .input-group {
@@ -108,52 +97,17 @@
 
     input[type="date"]:focus {
         outline: none;
-        border-color: #667eea;
-    }
-
-    .gestation-selector {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 25px;
-    }
-
-    .gestation-option {
-        flex: 1;
-        padding: 12px;
-        border: 2px solid #e0e0e0;
-        border-radius: 10px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 14px;
-        background: white;
-    }
-
-    .gestation-option:hover {
-        border-color: #667eea;
-    }
-
-    .gestation-option.active {
-        background: #667eea;
-        color: white;
-        border-color: #667eea;
-    }
-
-    .gestation-label {
-        font-weight: 600;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .gestation-days {
-        font-size: 12px;
-        opacity: 0.8;
+        border-color: var(--primary-color);
     }
 
     button {
         width: 100%;
         padding: 15px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(
+            135deg,
+            var(--primary-color) 0%,
+            var(--secondary-color) 100%
+        );
         color: white;
         border: none;
         border-radius: 10px;
@@ -173,18 +127,22 @@
     button:active {
         transform: translateY(0);
     }
+    .dateResult {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        align-items: center;
 
-    .result {
-        margin-top: 30px;
-        padding: 25px;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        border-radius: 15px;
-        display: none;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 12px;
     }
 
-    .result.show {
-        display: block;
-        animation: slideIn 0.5s ease;
+    .result-dateRange {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 12px;
     }
 
     @keyframes slideIn {
@@ -205,27 +163,25 @@
         text-transform: uppercase;
         letter-spacing: 1px;
     }
+    .dateValue {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 15px;
+        color: #000;
+        font-weight: 900;
+        span {
+            color: #555;
 
-    .result-date {
-        color: #333;
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 15px;
-    }
-
-    .result-details {
-        color: #666;
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .result-details strong {
-        color: #333;
+            font-weight: 400;
+            font-size: 0.9em;
+        }
     }
 
     .info-box {
         background: #f0f4ff;
-        border-left: 4px solid #667eea;
+        border-left: 4px solid var(--primary-color);
         padding: 15px;
         border-radius: 8px;
         margin-top: 20px;

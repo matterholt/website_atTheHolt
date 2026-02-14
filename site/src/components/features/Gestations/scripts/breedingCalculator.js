@@ -1,19 +1,12 @@
 let selectedGestationDays = 147;
+let shortDateResult = document.getElementById("shortDateResult");
+let standardDateResult = document.getElementById("standardDateResult");
+let longDateResult = document.getElementById("longDateResult");
+
 document.getElementById("calculateButton").onclick = () => {
   calculateBreedingDate();
 };
-// Handle gestation period selection
-document.querySelectorAll(".gestation-option").forEach((option) => {
-  option.addEventListener("click", function () {
-    document.querySelectorAll(".gestation-option").forEach((opt) => {
-      opt.classList.remove("active");
-    });
-    this.classList.add("active");
-    selectedGestationDays = parseInt(this.dataset.days);
-  });
-});
 
-// Set max date to today
 const today = new Date().toISOString().split("T")[0];
 document.getElementById("birthDate").setAttribute("max", today);
 
@@ -33,41 +26,29 @@ function calculateBreedingDate() {
 
   // Format the breeding date
   const options = {
-    weekday: "long",
     year: "numeric",
-    month: "long",
+    month: "numeric",
     day: "numeric",
   };
-  const formattedBreedingDate = breedingDate.toLocaleDateString(
+  // Calculate date range (±2 days)
+  const earliestDate = new Date(breedingDate);
+  earliestDate.setDate(earliestDate.getDate() - 2);
+
+  const latestDate = new Date(breedingDate);
+  latestDate.setDate(latestDate.getDate() + 2);
+
+  const earliestFormatted = earliestDate.toLocaleDateString("en-US", options);
+  const latestFormatted = latestDate.toLocaleDateString("en-US", options);
+  const standardDateFormated = breedingDate.toLocaleDateString(
     "en-US",
     options,
   );
 
-  // Calculate date range (±2 days)
-  const earliestDate = new Date(breedingDate);
-  earliestDate.setDate(earliestDate.getDate() - 2);
-  const latestDate = new Date(breedingDate);
-  latestDate.setDate(latestDate.getDate() + 2);
-
-  const earliestFormatted = earliestDate.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-  });
-  const latestFormatted = latestDate.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-  });
-
-  // Display results
-  document.getElementById("breedingDate").textContent = formattedBreedingDate;
-  document.getElementById("details").innerHTML = `
-             <strong>Gestation period used:</strong> ${selectedGestationDays} days<br>
-             <strong>Likely breeding window:</strong> ${earliestFormatted} - ${latestFormatted}<br>
-             <br>
-             The ram likely bred the ewe around this date, give or take a few days.
-         `;
-
-  document.getElementById("result").classList.add("show");
+  document.getElementById("shortDateResult").textContent =
+    `${earliestFormatted}`;
+  document.getElementById("longDateResult").textContent = `${latestFormatted}`;
+  document.getElementById("standardDateResult").textContent =
+    `${standardDateFormated}`;
 }
 
 // Allow Enter key to trigger calculation
