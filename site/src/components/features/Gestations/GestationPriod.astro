@@ -3,44 +3,72 @@ import Html from "@layouts/Html.astro";
 ---
 
 <Html>
-    <div class="container container-layout">
-        <div class="conatiner-header">
-            <h1>Sheep Breeding Calculator</h1>
-            <p class="subtitle">Calculate when the ram bred the ewe</p>
-        </div>
+    <div class="layout">
+        <h1>Sheep Gestation Period</h1>
+        <div class="container container-layout">
+            <div class="container-header">
+                <h2>Sheep Breeding Calculator</h2>
+                <p class="subtitle">Calculate when the ram bred the ewe</p>
+            </div>
 
-        <div class="result-dateRange">
-            <div class="dateValue">
-                Short date <span id="shortDateResult">00-00-00</span>
+            <div class="result-dateRange">
+                <div class="dateValue">
+                    Short date <span id="shortDateResult">00-00-00</span>
+                </div>
+                <div class="dateValue">
+                    Standard date<span id="standardDateResult">00-00-00</span>
+                </div>
+                <div class="dateValue">
+                    Long date<span id="longDateResult">00-00-00</span>
+                </div>
             </div>
-            <div class="dateValue">
-                Standard date<span id="standardDateResult">00-00-00</span>
+
+            <div class="container-inputs">
+                <div class="input-group">
+                    <label for="animalId">Animal ID</label>
+                    <input type="text" id="animalId" required />
+
+                    <label for="birthDate">Lamb's Birth Date</label>
+                    <input type="date" id="birthDate" required />
+                </div>
+                <button id="storeDateAction">Store Date</button>
             </div>
-            <div class="dateValue">
-                Long date<span id="longDateResult">00-00-00</span>
+
+            <div class="info-box">
+                <p>
+                    The standard sheep gestation period is 147 days (about 5
+                    months), but it can range from 145-150 days depending on
+                    breed and other factors.
+                </p>
             </div>
         </div>
+        <div class="container container-layout">
+            <div class="container-header">
+                <h2>Stored Dates</h2>
 
-        <div class="container-inputs">
-            <div class="input-group">
-                <label for="birthDate">Lamb's Birth Date</label>
-                <input type="date" id="birthDate" value="2026-02-05" required />
+                <div class="birthdateItemsHeader">
+                    <div>Animal ID</div>
+                    <div>Date of Birth</div>
+                    <div>Estimated Bred date</div>
+                </div>
+                <ul id="birthDatesSaved" class="birthdateItems">
+                    <li>
+                        <div class="animal-id">Animal #0000</div>
+                        <div class="date-value">02/12/12</div>
+                        <div class="date-value">02/12/12</div>
+                    </li>
+                </ul>
             </div>
-            <button id="calculateButton">Calculate Breeding Date</button>
-        </div>
-
-        <div class="info-box">
-            <p>
-                The standard sheep gestation period is 147 days (about 5
-                months), but it can range from 145-150 days depending on breed
-                and other factors.
-            </p>
         </div>
     </div>
-
     <script src="./scripts/breedingCalculator.js"></script>
 </Html>
 <style>
+    .layout {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
     * {
         margin: 0;
         padding: 0;
@@ -59,12 +87,19 @@ import Html from "@layouts/Html.astro";
         flex-direction: column;
         gap: 24px;
     }
-
     h1 {
-        color: #333;
+        color: var(--white-color);
         text-align: center;
         margin-bottom: 10px;
-        font-size: 28px;
+        font-size: 38px;
+    }
+    .container-header {
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
     }
 
     .subtitle {
@@ -75,6 +110,9 @@ import Html from "@layouts/Html.astro";
 
     .input-group {
         margin-bottom: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
     label {
@@ -84,8 +122,7 @@ import Html from "@layouts/Html.astro";
         margin-bottom: 8px;
         font-size: 14px;
     }
-
-    input[type="date"] {
+    input {
         width: 100%;
         padding: 12px 15px;
         border: 2px solid #e0e0e0;
@@ -95,7 +132,7 @@ import Html from "@layouts/Html.astro";
         font-family: inherit;
     }
 
-    input[type="date"]:focus {
+    input:focus {
         outline: none;
         border-color: var(--primary-color);
     }
@@ -145,17 +182,6 @@ import Html from "@layouts/Html.astro";
         font-size: 12px;
     }
 
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
     .result-title {
         color: #555;
         font-size: 14px;
@@ -173,7 +199,6 @@ import Html from "@layouts/Html.astro";
         font-weight: 900;
         span {
             color: #555;
-
             font-weight: 400;
             font-size: 0.9em;
         }
@@ -187,5 +212,25 @@ import Html from "@layouts/Html.astro";
         margin-top: 20px;
         font-size: 13px;
         color: #555;
+    }
+    .birthdateItemsHeader {
+        font-weight: 900;
+        margin: 5px 0px;
+    }
+    .birthdateItems {
+        font-weight: 100;
+        li {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            margin: 2px 0px;
+            padding: 0px;
+        }
+    }
+    .birthdateItemsHeader,
+    .birthdateItems {
+        display: flex;
+        font-size: 12px;
+        justify-content: space-between;
     }
 </style>
