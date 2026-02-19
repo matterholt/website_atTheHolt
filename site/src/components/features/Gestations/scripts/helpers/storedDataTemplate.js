@@ -1,3 +1,5 @@
+import { DevToolbarBadge } from "astro/runtime/client/dev-toolbar/ui-library/badge.js";
+
 const birthDatesSaved = document.getElementById("birthDatesSaved");
 
 const birthDateSavedCollection_template = (livestock) => `
@@ -5,7 +7,7 @@ const birthDateSavedCollection_template = (livestock) => `
         <div class="animal-id">${livestock.id}</div>
         <div class="date-value">${livestock.birth}</div>
         <div class="date-value">${livestock.conseption}</div>
-    </li>`;
+  </li>`;
 
 export function displayCollectionAlt(savedDates) {
   console.log("GEETT", savedDates);
@@ -13,11 +15,11 @@ export function displayCollectionAlt(savedDates) {
     birthDatesSaved.innerHTML =
       '<li class="empty-message">No sheep records available</li>';
     return;
+  } else {
+    birthDatesSaved.innerHTML = savedDates
+      .map((keepDate) => birthDateSavedCollection_template(keepDate))
+      .join("");
   }
-
-  birthDatesSaved.innerHTML = savedDates
-    .map((keepDate) => birthDateSavedCollection_template(keepDate))
-    .join("");
 }
 
 export function storedDateActions(incomeing) {
@@ -30,6 +32,7 @@ export function storedDateActions(incomeing) {
     print: () => {
       console.log(temp);
     },
+    storedCount: () => temp.length,
     renderDom: () => displayCollectionAlt(temp),
   };
 }

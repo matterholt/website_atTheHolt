@@ -5,7 +5,7 @@ import {
 } from "./helpers/storedDataTemplate";
 
 const storedDates = storedDateActions({
-  id: "0000",
+  id: "testing",
   birth: "2023-01-01",
   conseption: "2023-01-01",
 });
@@ -21,6 +21,10 @@ const today = new Date().toISOString().split("T")[0];
 
 (function setBirthDate() {
   const initialBirthDate = birthDateInput.value;
+  const initialAnimalId = animalId.value;
+  if (initialAnimalId === "") {
+    animalId.value = `#000${storedDates.storedCount() + 1}`;
+  }
   if (initialBirthDate === "") {
     birthDateInput.value = today;
     calculateBreedingDate();
@@ -28,7 +32,6 @@ const today = new Date().toISOString().split("T")[0];
     birthDateInput.value = initialBirthDate;
   }
 })();
-
 
 function calculateBreedingDate() {
   const birthDateInput = document.getElementById("birthDate").value;
