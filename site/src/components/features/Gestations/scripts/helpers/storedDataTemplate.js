@@ -10,7 +10,6 @@ const birthDateSavedCollection_template = (livestock) => `
   </li>`;
 
 export function displayCollectionAlt(savedDates) {
-  console.log("GEETT", savedDates);
   if (savedDates.length === 0) {
     birthDatesSaved.innerHTML =
       '<li class="empty-message">No sheep records available</li>';
@@ -23,7 +22,7 @@ export function displayCollectionAlt(savedDates) {
 }
 
 export function storedDateActions(incomeing) {
-  const temp = [incomeing];
+  const temp = [...incomeing];
 
   return {
     add: (item) => {

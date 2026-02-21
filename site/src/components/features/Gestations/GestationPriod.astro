@@ -1,5 +1,6 @@
 ---
 import Html from "@layouts/Html.astro";
+import InformationBox from "@components/general/InformationBox.astro";
 ---
 
 <Html>
@@ -13,13 +14,13 @@ import Html from "@layouts/Html.astro";
 
             <div class="result-dateRange">
                 <div class="dateValue">
-                    Short date <span id="shortDateResult">00-00-00</span>
+                    Early date <span id="shortDateResult">00-00-00</span>
+                </div>
+                <div class="dateValue targetDate">
+                    Target date<span id="standardDateResult">00-00-00</span>
                 </div>
                 <div class="dateValue">
-                    Standard date<span id="standardDateResult">00-00-00</span>
-                </div>
-                <div class="dateValue">
-                    Long date<span id="longDateResult">00-00-00</span>
+                    Late date<span id="longDateResult">00-00-00</span>
                 </div>
             </div>
 
@@ -33,14 +34,13 @@ import Html from "@layouts/Html.astro";
                 </div>
                 <button id="storeDateAction">Store Date</button>
             </div>
-
-            <div class="info-box">
+            <InformationBox>
                 <p>
                     The standard sheep gestation period is 147 days (about 5
                     months), but it can range from 145-150 days depending on
                     breed and other factors.
                 </p>
-            </div>
+            </InformationBox>
         </div>
         <div class="container container-layout">
             <div class="container-header">
@@ -204,15 +204,6 @@ import Html from "@layouts/Html.astro";
         }
     }
 
-    .info-box {
-        background: #f0f4ff;
-        border-left: 4px solid var(--primary-color);
-        padding: 15px;
-        border-radius: 8px;
-        margin-top: 20px;
-        font-size: 13px;
-        color: #555;
-    }
     .birthdateItemsHeader {
         font-weight: 900;
         margin: 5px 0px;
@@ -234,5 +225,7 @@ import Html from "@layouts/Html.astro";
         display: flex;
         font-size: 12px;
         justify-content: space-between;
+    }
+    .targetDate {
     }
 </style>

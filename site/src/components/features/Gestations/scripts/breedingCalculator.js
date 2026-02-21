@@ -4,11 +4,18 @@ import {
   displayCollectionAlt,
 } from "./helpers/storedDataTemplate";
 
-const storedDates = storedDateActions({
-  id: "testing",
-  birth: "2023-01-01",
-  conseption: "2023-01-01",
-});
+const storedDates = storedDateActions([
+  {
+    id: "testing",
+    birth: "2023-01-01",
+    conseption: "2023-01-01",
+  },
+  {
+    id: "testing",
+    birth: "2023-01-01",
+    conseption: "2023-01-01",
+  },
+]);
 
 const animalId = document.getElementById("animalId");
 const shortDateResult = document.getElementById("shortDateResult");
@@ -32,6 +39,30 @@ const today = new Date().toISOString().split("T")[0];
     birthDateInput.value = initialBirthDate;
   }
 })();
+
+function setUp() {
+  const storedDates = storedDateActions([
+    {
+      id: "testing",
+      birth: "2023-01-01",
+      conseption: "2023-01-01",
+    },
+    {
+      id: "testing2",
+      birth: "2023-01-01",
+      conseption: "2023-01-01",
+    },
+  ]);
+  const animalId = `#000${storedDates.length() + 1}`;
+  const birthDate = birthDateInput.value ?? today;
+  const breedingRange = {
+    earlyDate: "",
+    standardDate: "",
+    laterDate: "",
+  };
+}
+setUp();
+debugger;
 
 function calculateBreedingDate() {
   const birthDateInput = document.getElementById("birthDate").value;
