@@ -1,5 +1,3 @@
-import { DevToolbarBadge } from "astro/runtime/client/dev-toolbar/ui-library/badge.js";
-
 const birthDatesSaved = document.getElementById("birthDatesSaved");
 
 const birthDateSavedCollection_template = (livestock) => `
@@ -22,16 +20,13 @@ export function displayCollectionAlt(savedDates) {
 }
 
 export function storedDateActions(incomeing) {
-  const temp = [...incomeing];
+  const savedDates = [...incomeing];
 
   return {
-    add: (item) => {
-      temp.push(item);
+    add: (savedDate) => {
+      savedDate.push(item);
     },
-    print: () => {
-      console.log(temp);
-    },
-    storedCount: () => temp.length,
-    renderDom: () => displayCollectionAlt(temp),
+    storedCount: () => savedDates.length,
+    renderDom: () => displayCollectionAlt(savedDates),
   };
 }
