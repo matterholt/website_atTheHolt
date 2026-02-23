@@ -24,9 +24,9 @@ export function storedDateActions(incomeing) {
 
   return {
     add: (savedDate) => {
-      savedDate.push(item);
+      savedDates.push(savedDate);
     },
     storedCount: () => savedDates.length,
-    renderDom: () => displayCollectionAlt(savedDates),
+    renderToDom: () => displayCollectionAlt(savedDates),
   };
 }

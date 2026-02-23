@@ -4,83 +4,70 @@ import {
   displayCollectionAlt,
 } from "./helpers/storedDataTemplate";
 
-const storedDates = storedDateActions([
-  {
-    id: "testing",
-    birth: "2023-01-01",
-    conseption: "2023-01-01",
-  },
-  {
-    id: "testing",
-    birth: "2023-01-01",
-    conseption: "2023-01-01",
-  },
-]);
+const storedDates = storedDateActions([]);
 
 const animalId = document.getElementById("animalId");
 const shortDateResult = document.getElementById("shortDateResult");
-let standardDateResult = document.getElementById("standardDateResult");
-let longDateResult = document.getElementById("longDateResult");
+const standardDateResult = document.getElementById("standardDateResult");
+const longDateResult = document.getElementById("longDateResult");
 
 const birthDateInput = document.getElementById("birthDate");
-
 const today = new Date().toISOString().split("T")[0];
 
-(function setBirthDate() {
-  const initialBirthDate = birthDateInput.value;
-  const initialAnimalId = animalId.value;
-  if (initialAnimalId === "") {
-    animalId.value = `#000${storedDates.storedCount() + 1}`;
-  }
-  if (initialBirthDate === "") {
-    birthDateInput.value = today;
-    calculateBreedingDate();
-  } else {
-    birthDateInput.value = initialBirthDate;
-  }
-})();
+const initialBirthDate =
+  birthDateInput.value === ""
+    ? (birthDateInput.value = today)
+    : birthDateInput.value;
+const initialAnimalId =
+  animalId.value === ""
+    ? (animalId.value = `#000${storedDates.storedCount() + 1}`)
+    : animalId.value;
 
-function setUp() {
-  const storedDates = storedDateActions([
-    {
-      id: "testing",
-      birth: "2023-01-01",
-      conseption: "2023-01-01",
+function animalSetUp() {
+  let animalIdInput = initialAnimalId;
+  let animalBirthedDate = initialBirthDate;
+  let animalBreedRange = calculateDueDate(animalBirthedDate);
+  calculateBreedingDate(animalBreedRange);
+
+  // when any data change on form , this needs to get called
+  return {
+    getDisplayContent: {
+      animalIdInput,
+      animalBirthedDate,
+      animalBreedRange,
     },
-    {
-      id: "testing2",
-      birth: "2023-01-01",
-      conseption: "2023-01-01",
+
+    updateId: () => {
+      animalIdInput = animalId.value;
     },
-  ]);
-  const animalId = `#000${storedDates.length() + 1}`;
-  const birthDate = birthDateInput.value ?? today;
-  const breedingRange = {
-    earlyDate: "",
-    standardDate: "",
-    laterDate: "",
+    updateBirthDate: () => {
+      animalBirthedDate = birthDateInput.value;
+    },
+    storeAnimal: () => {
+      storedDates.add({
+        id: animalIdInput,
+        birth: animalBirthedDate,
+        conseption: animalBreedRange.standardDate,
+      });
+      storedDates.renderToDom();
+    },
   };
 }
-setUp();
-debugger;
-
-function calculateBreedingDate() {
-  const birthDateInput = document.getElementById("birthDate").value;
-  const birthDate = new Date(birthDateInput);
-  const birthingRange = calculateDueDate(birthDate);
-  storedDates.add({
-    id: animalId.value,
-    dirth: birthDateInput,
-    conseption: birthingRange.standardDate,
-  });
-
-  shortDateResult.textContent = birthingRange.earlyDate;
-  longDateResult.textContent = birthingRange.laterDate;
-  standardDateResult.textContent = birthingRange.standardDate;
+const AnimalSetup = animalSetUp();
+function calculateBreedingDate(animalBreedRange) {
+  shortDateResult.textContent = animalBreedRange.earlyDate;
+  longDateResult.textContent = animalBreedRange.laterDate;
+  standardDateResult.textContent = animalBreedRange.standardDate;
 }
 
 // calculateButton.addEventListener("click", calculateBreedingDate());
-birthDateInput.addEventListener("input", calculateBreedingDate);
+birthDateInput.addEventListener("input", () => {
+  AnimalSetup.updateBirthDate();
+  calculateBreedingDate;
+});
+animalId.addEventListener("input", () => {
+  AnimalSetup.updateId();
+});
 
 // Allow Enter key to trigger calculation
 document.getElementById("birthDate").addEventListener("keypress", function (e) {
@@ -90,4 +77,4 @@ document.getElementById("birthDate").addEventListener("keypress", function (e) {
 });
 
 const storeDateAction = document.getElementById("storeDateAction");
-storeDateAction.addEventListener("click", () => storedDates.renderDom());
+storeDateAction.addEventListener("click", () => AnimalSetup.storeAnimal());
