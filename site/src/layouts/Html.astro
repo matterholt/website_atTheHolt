@@ -1,3 +1,7 @@
+---
+import NavBar from "./navigation/NavBar.astro";
+---
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -6,31 +10,30 @@
         <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
         <meta name="generator" content={Astro.generator} />
         <title>At the Holt</title>
+        <link rel="stylesheet" href="/styles/global.css" />
     </head>
     <body class="center_layout">
+        <NavBar />
         <slot />
     </body>
 </html>
 
 <style>
-    :root {
-        --primary-color: #2a7f62;
-        --secondary-color: #c0c0c0;
-        --white-color: #ffffff;
-        --black-color: #000000;
-    }
     html,
     body {
         margin: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #2a7f62;
-        color: #c0c0c0;
-        /* color: #2b4570; */
+        width: 100vw;
+        min-height: 100vh;
+        background-color: var(--primary-color);
         font-size: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
+
     .center_layout {
-        display: grid;
-        place-items: center;
+        background-color: var(--secondary-color);
+        width: 85%;
+        padding-top: 100px;
     }
 </style>

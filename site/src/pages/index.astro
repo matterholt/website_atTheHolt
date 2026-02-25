@@ -1,23 +1,26 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Html from "@layouts/Html.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete evdserything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
+<Html>
     <header>
         <h1>At The Holt Farms</h1>
-        <p class="subtitle">Raising Pastured Protein</p>
+        <p class="subtitle">Simple Homestead</p>
     </header>
-</Layout>
+    <main>
+        <p>A place where I'm able to get outside and work with my hands</p>
+    </main>
+</Html>
 
 <style>
     header {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        padding: 50px;
+    }
+    .subtitle {
     }
 </style>

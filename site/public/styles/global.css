@@ -1,0 +1,27 @@
+:root {
+    --primary-color: hsl(158, 83%, 7%);
+    --secondary-color: hsl(20, 10%, 85%);
+    --accent-dull-color: hsl(49.66, 44.62%, 87.25%);
+    --accent-bright-color: hsl(50.59, 100%, 50%);
+    --main-black: hsl(0, 0%, 20%);
+    --main-white: hsl(0, 0%, 99%);
+    font-size: 14px;
+
+    --main-fontColor: var(--main-black);
+}
+h1,
+p {
+    color: var(--main-fontColor);
+}
+h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}

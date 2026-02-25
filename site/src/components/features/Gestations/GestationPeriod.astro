@@ -1,78 +1,70 @@
 ---
-import Html from "@layouts/Html.astro";
-import InformationBox from "@components/general/InformationBox.astro";
+
 ---
 
-<Html>
-    <div class="layout">
-        <h1>Sheep Gestation Period</h1>
-        <div class="container container-layout">
-            <div class="container-header">
-                <h2>Sheep Breeding Calculator</h2>
-                <p class="subtitle">Calculate when the ram bred the ewe</p>
-            </div>
-
-            <div class="result-dateRange">
-                <div class="dateValue">
-                    Early date <span id="shortDateResult">00-00-00</span>
-                </div>
-                <div class="dateValue targetDate">
-                    Target date<span id="standardDateResult">00-00-00</span>
-                </div>
-                <div class="dateValue">
-                    Late date<span id="longDateResult">00-00-00</span>
-                </div>
-            </div>
-
-            <div class="container-inputs">
-                <div class="input-group">
-                    <label for="animalId">Animal ID</label>
-                    <input type="text" id="animalId" required />
-
-                    <label for="birthDate">Lamb's Birth Date</label>
-                    <input type="date" id="birthDate" required />
-                </div>
-                <button id="storeDateAction">Store Date</button>
-            </div>
-            <InformationBox>
-                <p>
-                    The standard sheep gestation period is 147 days (about 5
-                    months), but it can range from 145-150 days depending on
-                    breed and other factors.
-                </p>
-            </InformationBox>
+<div class="gestationPeriod">
+    <div class="container container-layout">
+        <div class="container-header">
+            <h2>Sheep Breeding Calculator</h2>
+            <p class="subtitle">Calculate when the ram bred the ewe</p>
         </div>
-        <div class="container container-layout">
-            <div class="container-header">
-                <h2>Stored Dates</h2>
 
-                <div class="birthdateItemsHeader">
-                    <div>Animal ID</div>
-                    <div>Date of Birth</div>
-                    <div>Estimated Bred date</div>
-                </div>
-                <ul id="birthDatesSaved" class="birthdateItems">
-                    <li>
-                        <div class="animal-id">Animal TESTING</div>
-                        <div class="date-value">te/st/in</div>
-                        <div class="date-value">te/st/in</div>
-                    </li>
-                </ul>
+        <div class="result-dateRange">
+            <div class="dateValue">
+                Early date <span id="shortDateResult">00-00-00</span>
             </div>
+            <div class="dateValue targetDate">
+                Target date<span id="standardDateResult">00-00-00</span>
+            </div>
+            <div class="dateValue">
+                Late date<span id="longDateResult">00-00-00</span>
+            </div>
+        </div>
+
+        <div class="container-inputs">
+            <div class="input-group">
+                <label for="animalId">Animal ID</label>
+                <input type="text" id="animalId" required />
+
+                <label for="birthDate">Lamb's Birth Date</label>
+                <input type="date" id="birthDate" required />
+            </div>
+            <button id="storeDateAction">Store Date</button>
         </div>
     </div>
-    <script src="./scripts/breedingCalculator.js"></script>
-</Html>
+    <div class="container container-layout">
+        <div class="container-header">
+            <h2>Stored Dates</h2>
+
+            <div class="birthdateItemsHeader">
+                <div>Animal ID</div>
+                <div>Date of Birth</div>
+                <div>Estimated Bred date</div>
+            </div>
+            <ul id="birthDatesSaved" class="birthdateItems">
+                <p class="noData">No Stored Dates</p>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="./scripts/breedingCalculator.js"></script>
 <style>
-    .layout {
+    .gestationPeriod {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        width: 90%;
         gap: 18px;
     }
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+    .noData {
+        font-size: 0.7rem;
+        color: #999;
+        text-align: center;
     }
     .container {
         background: var(--white-color);
@@ -86,6 +78,7 @@ import InformationBox from "@components/general/InformationBox.astro";
         display: flex;
         flex-direction: column;
         gap: 24px;
+        background-color: var(--main-white);
     }
     h1 {
         color: var(--white-color);
