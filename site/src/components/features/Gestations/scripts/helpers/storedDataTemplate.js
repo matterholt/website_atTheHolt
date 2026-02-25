@@ -7,7 +7,7 @@ const birthDateSavedCollection_template = (livestock) => `
         <div class="date-value">${livestock.conseption}</div>
   </li>`;
 
-export function displayCollectionAlt(savedDates) {
+export function storedDatesToDom(savedDates) {
   if (savedDates.length === 0) {
     birthDatesSaved.innerHTML =
       '<li class="empty-message">No sheep records available</li>';
@@ -27,6 +27,6 @@ export function storedDateActions(incomeing) {
       savedDates.push(savedDate);
     },
     storedCount: () => savedDates.length,
-    renderToDom: () => displayCollectionAlt(savedDates),
+    renderToDom: () => storedDatesToDom(savedDates),
   };
 }

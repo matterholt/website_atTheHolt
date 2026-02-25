@@ -1,8 +1,5 @@
-import { calculateDueDate } from "./helpers/dateFunctions";
-import {
-  storedDateActions,
-  displayCollectionAlt,
-} from "./helpers/storedDataTemplate";
+import { calculateStartOfGestation } from "./helpers/dateFunctions";
+import { storedDateActions } from "./helpers/storedDataTemplate";
 
 const storedDates = storedDateActions([]);
 
@@ -14,21 +11,18 @@ const longDateResult = document.getElementById("longDateResult");
 const birthDateInput = document.getElementById("birthDate");
 const today = new Date().toISOString().split("T")[0];
 
-const initialBirthDate =
-  birthDateInput.value === ""
-    ? (birthDateInput.value = today)
-    : birthDateInput.value;
-const initialAnimalId =
-  animalId.value === ""
-    ? (animalId.value = `#000${storedDates.storedCount() + 1}`)
-    : animalId.value;
-
 function animalSetUp() {
-  let animalIdInput = initialAnimalId;
-  let animalBirthedDate = initialBirthDate;
-  let animalBreedRange = calculateDueDate(animalBirthedDate);
-  calculateBreedingDate(animalBreedRange);
+  let animalIdInput =
+    animalId.value === ""
+      ? (animalId.value = `#000${storedDates.storedCount() + 1}`)
+      : animalId.value;
+  let animalBirthedDate =
+    birthDateInput.value === ""
+      ? (birthDateInput.value = today)
+      : birthDateInput.value;
+  let animalBreedRange = calculateStartOfGestation(animalBirthedDate);
 
+  breedingDatesToDom(animalBreedRange);
   // when any data change on form , this needs to get called
   return {
     getDisplayContent: {
@@ -43,6 +37,10 @@ function animalSetUp() {
     updateBirthDate: () => {
       animalBirthedDate = birthDateInput.value;
     },
+    breedDateRange: () => {
+      animalBreedRange = calculateStartOfGestation(animalBirthedDate);
+      return animalBreedRange;
+    },
     storeAnimal: () => {
       storedDates.add({
         id: animalIdInput,
@@ -54,16 +52,17 @@ function animalSetUp() {
   };
 }
 const AnimalSetup = animalSetUp();
-function calculateBreedingDate(animalBreedRange) {
-  shortDateResult.textContent = animalBreedRange.earlyDate;
-  longDateResult.textContent = animalBreedRange.laterDate;
-  standardDateResult.textContent = animalBreedRange.standardDate;
+
+function breedingDatesToDom(animalBreedRange) {
+  shortDateResult.textContent = animalBreedRange?.earlyDate;
+  longDateResult.textContent = animalBreedRange?.laterDate;
+  standardDateResult.textContent = animalBreedRange?.standardDate;
 }
 
-// calculateButton.addEventListener("click", calculateBreedingDate());
+// calculateButton.addEventListener("click", breedingDatesToDom());
 birthDateInput.addEventListener("input", () => {
   AnimalSetup.updateBirthDate();
-  calculateBreedingDate;
+  breedingDatesToDom(AnimalSetup.breedDateRange());
 });
 animalId.addEventListener("input", () => {
   AnimalSetup.updateId();
@@ -72,7 +71,7 @@ animalId.addEventListener("input", () => {
 // Allow Enter key to trigger calculation
 document.getElementById("birthDate").addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
-    calculateBreedingDate();
+    breedingDatesToDom(AnimalSetup.breedDateRange());
   }
 });
 
