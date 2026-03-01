@@ -1,3 +1,4 @@
+import { inputSanitize, isValidateDate } from "./helpers/validators";
 import { calculateStartOfGestation } from "./helpers/dateFunctions";
 import { storedDateActions } from "./helpers/storedDataTemplate";
 
@@ -15,11 +16,11 @@ function animalSetUp() {
   let animalIdInput =
     animalId.value === ""
       ? (animalId.value = `#000${storedDates.storedCount() + 1}`)
-      : animalId.value;
+      : inputSanitize(animalId.value);
   let animalBirthedDate =
-    birthDateInput.value === ""
-      ? (birthDateInput.value = today)
-      : birthDateInput.value;
+    birthDateInput.value !== "" || isValidateDate(birthDateInput.value)
+      ? birthDateInput.value
+      : (birthDateInput.value = today);
   let animalBreedRange = calculateStartOfGestation(animalBirthedDate);
 
   breedingDatesToDom(animalBreedRange);
@@ -32,10 +33,11 @@ function animalSetUp() {
     },
 
     updateId: () => {
-      animalIdInput = animalId.value;
+      animalIdInput = inputSanitize(animalId.value);
     },
     updateBirthDate: () => {
-      animalBirthedDate = birthDateInput.value;
+      // added errors when date is wrong
+      animalBirthedDate = isValidateDate(birthDateInput.value) ?? "";
     },
     breedDateRange: () => {
       animalBreedRange = calculateStartOfGestation(animalBirthedDate);
@@ -69,7 +71,7 @@ animalId.addEventListener("input", () => {
 });
 
 // Allow Enter key to trigger calculation
-document.getElementById("birthDate").addEventListener("keypress", function (e) {
+document.birthDateInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     breedingDatesToDom(AnimalSetup.breedDateRange());
   }
