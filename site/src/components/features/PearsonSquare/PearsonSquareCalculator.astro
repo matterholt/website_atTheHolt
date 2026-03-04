@@ -1,0 +1,51 @@
+---
+import Container from "@components/general/Container.astro";
+import IngredientContainer from "./components/IngredientContainer.astro";
+import TotalRationSize from "./components/TotalRationSize.astro";
+import CalculatedRation from "./components/CalculatedRation.astro";
+---
+
+<Container>
+    <div class="left-panel">
+        <IngredientContainer
+            cardLabel="Ingredient A"
+            deafaultItemValue="corn"
+            defaultValue={{
+                label: "Corn",
+                inputValue: "8",
+                inputValueId: "cpA",
+            }}
+            inputId="itemA"
+        />
+        <IngredientContainer
+            cardLabel="Ingredient B"
+            defaultValue={{
+                label: "Soy bean",
+                inputValue: "44",
+                inputValueId: "cpB",
+            }}
+            inputId="itemB"
+        />
+        <IngredientContainer
+            cardLabel="Target"
+            defaultValue={{
+                inputValue: "14",
+                inputValueId: "cpTarget",
+            }}
+            inputId="target"
+        />
+        <TotalRationSize />
+    </div>
+    <div class="temp">
+        <CalculatedRation />
+    </div>
+</Container>
+<style>
+    .left-panel {
+        font-size: 12px;
+        width: 50%;
+    }
+    .temp {
+        background-color: gray;
+    }
+</style>

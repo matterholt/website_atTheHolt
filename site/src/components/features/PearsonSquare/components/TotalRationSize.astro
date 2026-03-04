@@ -1,0 +1,74 @@
+---
+
+---
+
+<div class="quantity-section" style="margin-top: 1rem">
+    <div class="section-title">Total Ration Size</div>
+    <div class="field-group">
+        <label>Total Amount (lbs/day)</label>
+        <div class="input-row">
+            <input
+                type="number"
+                id="totalLbs"
+                min="0"
+                step="1"
+                value="50"
+                placeholder="e.g. 50"
+                oninput="calculate()"
+            />
+            <span class="input-suffix">lbs</span>
+        </div>
+    </div>
+    <div class="qty-results">
+        <div class="qty-chip a">
+            <div class="lbl" id="qtyLabelA">Corn</div>
+            <div class="num" id="qtyA">—</div>
+        </div>
+        <div class="qty-chip b">
+            <div class="lbl" id="qtyLabelB">SBM</div>
+            <div class="num" id="qtyB">—</div>
+        </div>
+    </div>
+</div>
+<style>
+    .quantity-section {
+        background: white;
+        border: 1px solid rgba(160, 98, 42, 0.15);
+        border-radius: 4px;
+        padding: 1.2rem;
+    }
+
+    .qty-results {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-top: 0.8rem;
+    }
+
+    .qty-chip {
+        background: var(--parchment);
+        border-radius: 3px;
+        padding: 0.6rem 0.8rem;
+        text-align: center;
+    }
+
+    .qty-chip .lbl {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .qty-chip .num {
+        font-family: "Source Code Pro", monospace;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--brown-mid);
+    }
+    .qty-chip.a .num {
+        color: var(--green-field);
+    }
+    .qty-chip.b .num {
+        color: var(--rust);
+    }
+</style>

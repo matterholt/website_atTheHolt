@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pearson Square — Cattle Feed Calculator</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Code+Pro:wght@400;600&family=Lato:wght@300;400;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --cream: #f5f0e8;
+                --parchment: #ede5d0;
+                --brown-dark: #2c1a0e;
+                --brown-mid: #6b3d1e;
+                --brown-light: #a0622a;
+                --amber: #d4832a;
+                --green-field: #3d6b2a;
+                --green-light: #5a9e3a;
+                --rust: #b84c1a;
+                --text: #1e1208;
+                --text-muted: #7a5c3a;
+            }
+
+            body {
+                background-color: var(--brown-dark);
+                background-image:
+                    radial-gradient(
+                        ellipse at 20% 50%,
+                        rgba(107, 61, 30, 0.4) 0%,
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        ellipse at 80% 20%,
+                        rgba(61, 107, 42, 0.2) 0%,
+                        transparent 50%
+                    ),
+                    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%232c1a0e'/%3E%3Crect width='1' height='1' fill='%23382010' opacity='0.5'/%3E%3C/svg%3E");
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                font-family: "Lato", sans-serif;
+            }
+
+            .card {
+                background: var(--cream);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+                max-width: 860px;
+                width: 100%;
+                border-radius: 2px;
+                box-shadow:
+                    0 30px 80px rgba(0, 0, 0, 0.6),
+                    0 0 0 1px rgba(160, 98, 42, 0.3);
+                overflow: hidden;
+                animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+            }
+
+            @keyframes rise {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .header {
+                background: var(--brown-dark);
+                background-image: linear-gradient(
+                    135deg,
+                    #2c1a0e 0%,
+                    #4a2810 50%,
+                    #2c1a0e 100%
+                );
+                padding: 2rem 2.5rem 1.8rem;
+                border-bottom: 3px solid var(--amber);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .header::before {
+                content: "🐄";
+                position: absolute;
+                right: 2rem;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 5rem;
+                opacity: 0.12;
+                filter: grayscale(1);
+            }
+
+            .header-label {
+                font-family: "Source Code Pro", monospace;
+                font-size: 0.7rem;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                color: var(--amber);
+                margin-bottom: 0.4rem;
+            }
+
+            .header h1 {
+                font-family: "Playfair Display", serif;
+                font-size: clamp(1.8rem, 4vw, 2.8rem);
+                font-weight: 900;
+                color: var(--cream);
+                line-height: 1.1;
+            }
+
+            .header p {
+                color: rgba(245, 240, 232, 0.6);
+                font-size: 0.88rem;
+                margin-top: 0.5rem;
+                font-weight: 300;
+                max-width: 480px;
+            }
+
+            .body {
+                padding: 2rem 2.5rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            @media (max-width: 600px) {
+                .body {
+                    grid-template-columns: 1fr;
+                    padding: 1.5rem;
+                }
+                .header {
+                    padding: 1.5rem;
+                }
+            }
+
+            .section-title {
+                font-family: "Source Code Pro", monospace;
+                font-size: 0.65rem;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--text-muted);
+                margin-bottom: 0.8rem;
+                border-bottom: 1px solid var(--parchment);
+                padding-bottom: 0.4rem;
+            }
+
+            .field-group {
+                margin-bottom: 1.2rem;
+            }
+
+            label {
+                display: block;
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: var(--text);
+                margin-bottom: 0.35rem;
+                letter-spacing: 0.03em;
+            }
+
+            .input-row {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            input[type="number"] {
+                width: 100%;
+                border: 1.5px solid var(--parchment);
+                border-radius: 3px;
+                background: var(--cream);
+                font-family: "Source Code Pro", monospace;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--brown-mid);
+                padding: 0.45rem 0.7rem;
+                outline: none;
+                transition:
+                    border-color 0.2s,
+                    box-shadow 0.2s;
+                -moz-appearance: textfield;
+            }
+
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+            }
+
+            input[type="number"]:focus {
+                border-color: var(--amber);
+                box-shadow: 0 0 0 3px rgba(212, 131, 42, 0.15);
+            }
+
+            .input-suffix {
+                font-family: "Source Code Pro", monospace;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                white-space: nowrap;
+                min-width: 2rem;
+            }
+
+            .ingredient-card {
+                background: white;
+                border: 1px solid rgba(160, 98, 42, 0.15);
+                border-radius: 4px;
+                padding: 1.2rem;
+                position: relative;
+            }
+
+            .ingredient-card.a {
+                border-left: 4px solid var(--green-field);
+            }
+            .ingredient-card.b {
+                border-left: 4px solid var(--rust);
+            }
+
+            .ingredient-name-input {
+                width: 100%;
+                border: none;
+                border-bottom: 1.5px solid var(--parchment);
+                background: transparent;
+                font-family: "Playfair Display", serif;
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--text);
+                padding: 0.2rem 0;
+                margin-bottom: 0.8rem;
+                outline: none;
+                transition: border-color 0.2s;
+            }
+
+            .ingredient-name-input:focus {
+                border-bottom-color: var(--amber);
+            }
+
+            .right-panel {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            /* Pearson Square Visual */
+            .square-viz {
+                background: white;
+                border: 1px solid rgba(160, 98, 42, 0.15);
+                border-radius: 4px;
+                padding: 1rem;
+            }
+
+            .square-canvas {
+                width: 100%;
+                aspect-ratio: 1;
+                max-height: 220px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="header">
+                <div class="header-label">Feed Formulation Tool</div>
+                <h1>Pearson Square Calculator</h1>
+                <p>
+                    Blend two feed ingredients to hit your target nutrient
+                    concentration. Adjust sliders to see real-time ration
+                    changes.
+                </p>
+            </div>
+
+            <div class="body">
+                <!-- Left: Inputs -->
+                <div class="left-panel">
+                    <div class="ingredient-card a">
+                        <div class="section-title">Ingredient A</div>
+                        <input
+                            class="ingredient-name-input"
+                            id="nameA"
+                            type="text"
+                            value="Corn"
+                            maxlength="24"
+                        />
+                        <div class="field-group">
+                            <label>Crude Protein %</label>
+                            <div class="input-row">
+                                <input
+                                    type="number"
+                                    id="cpA"
+                                    min="0"
+                                    max="100"
+                                    step="0.1"
+                                    value="8"
+                                    placeholder="e.g. 8"
+                                    oninput="calculate()"
+                                />
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ingredient-card b" style="margin-top: 1rem">
+                        <div class="section-title">Ingredient B</div>
+                        <input
+                            class="ingredient-name-input"
+                            id="nameB"
+                            type="text"
+                            value="Soybean Meal"
+                            maxlength="24"
+                        />
+                        <div class="field-group">
+                            <label>Crude Protein %</label>
+                            <div class="input-row">
+                                <input
+                                    type="number"
+                                    id="cpB"
+                                    min="0"
+                                    max="100"
+                                    step="0.1"
+                                    value="44"
+                                    placeholder="e.g. 44"
+                                    oninput="calculate()"
+                                />
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="
+                            margin-top: 1rem;
+                            background: white;
+                            border: 1px solid rgba(160, 98, 42, 0.15);
+                            border-radius: 4px;
+                            padding: 1.2rem;
+                            border-left: 4px solid var(--amber);
+                        "
+                    >
+                        <div class="section-title">Target</div>
+                        <div class="field-group">
+                            <label>Desired Crude Protein %</label>
+                            <div class="input-row">
+                                <input
+                                    type="number"
+                                    id="cpTarget"
+                                    min="0"
+                                    max="100"
+                                    step="0.1"
+                                    value="14"
+                                    placeholder="e.g. 14"
+                                    oninput="calculate()"
+                                />
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                        <div id="errorMsg" class="error-msg">
+                            ⚠ Target must fall between Ingredient A and
+                            Ingredient B values.
+                        </div>
+                    </div>
+
+                    <div class="quantity-section" style="margin-top: 1rem">
+                        <div class="section-title">Total Ration Size</div>
+                        <div class="field-group">
+                            <label>Total Amount (lbs/day)</label>
+                            <div class="input-row">
+                                <input
+                                    type="number"
+                                    id="totalLbs"
+                                    min="0"
+                                    step="1"
+                                    value="50"
+                                    placeholder="e.g. 50"
+                                    oninput="calculate()"
+                                />
+                                <span class="input-suffix">lbs</span>
+                            </div>
+                        </div>
+                        <div class="qty-results">
+                            <div class="qty-chip a">
+                                <div class="lbl" id="qtyLabelA">Corn</div>
+                                <div class="num" id="qtyA">—</div>
+                            </div>
+                            <div class="qty-chip b">
+                                <div class="lbl" id="qtyLabelB">SBM</div>
+                                <div class="num" id="qtyB">—</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual + Results -->
+                <div class="right-panel">
+                    <div class="results">
+                        <div class="section-title">Calculated Ration</div>
+
+                        <div class="result-row">
+                            <span class="result-label" id="resLabelA"
+                                >Corn</span
+                            >
+                            <span class="result-value green" id="resPctA"
+                                >—</span
+                            >
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label" id="resLabelB"
+                                >Soybean Meal</span
+                            >
+                            <span class="result-value rust" id="resPctB"
+                                >—</span
+                            >
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Parts A : Parts B</span>
+                            <span class="result-value amber" id="resParts"
+                                >—</span
+                            >
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Actual CP Achieved</span>
+                            <span class="result-value amber" id="resActual"
+                                >—</span
+                            >
+                        </div>
+
+                        <div class="bar-wrap">
+                            <div class="bar-track">
+                                <div class="bar-a" id="barA">—</div>
+                                <div class="bar-b" id="barB">—</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

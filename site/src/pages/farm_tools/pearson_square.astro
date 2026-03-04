@@ -1,0 +1,39 @@
+---
+import Html from "@layouts/Html.astro";
+
+import InformationBox from "@components/general/InformationBox.astro";
+import PearsonSquareCalculator from "@components/features/PearsonSquare/PearsonSquareCalculator.astro";
+---
+
+<Html>
+    <div class="layout">
+        <h1>Pearson Square Calculator</h1>
+        <InformationBox>
+            <p>
+                The Pearson Square is a simple algebraic method for calculating
+                how to blend two feed ingredients to achieve a desired nutrient
+                concentration (most commonly protein).
+            </p>
+            <p>
+                Blend two feed ingredients to hit your target nutrient
+                concentration. Adjust sliders to see real-time ration changes.
+            </p>
+        </InformationBox>
+
+        <PearsonSquareCalculator />
+    </div>
+    <style>
+        .layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 500px;
+            gap: 18px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</Html>
