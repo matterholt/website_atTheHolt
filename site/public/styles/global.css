@@ -2,10 +2,11 @@
     --primary-color: hsl(158, 83%, 7%);
     --secondary-color: hsl(20, 10%, 85%);
     --accent-dull-color: hsl(49.66, 44.62%, 87.25%);
-  --accent-gray-color:hsl(224, 100%, 97.06%);
+    --accent-gray-color: hsl(224, 100%, 97.06%);
     --accent-bright-color: hsl(50.59, 100%, 50%);
     --main-black: hsl(0, 0%, 20%);
     --main-white: hsl(0, 0%, 99%);
+    --accent_blue-hue: #f0f4ff;
     font-size: 14px;
 
     --main-fontColor: var(--main-black);

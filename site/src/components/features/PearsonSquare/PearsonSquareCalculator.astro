@@ -6,7 +6,7 @@ import CalculatedRation from "./components/CalculatedRation.astro";
 ---
 
 <Container>
-    <div class="left-panel">
+    <div class="ingredient_inputs">
         <IngredientContainer
             cardLabel="Ingredient A"
             deafaultItemValue="corn"
@@ -26,6 +26,7 @@ import CalculatedRation from "./components/CalculatedRation.astro";
             }}
             inputId="itemB"
         />
+
         <IngredientContainer
             cardLabel="Target"
             defaultValue={{
@@ -34,19 +35,17 @@ import CalculatedRation from "./components/CalculatedRation.astro";
             }}
             inputId="target"
         />
-        <TotalRationSize />
     </div>
-    <div class="temp">
-        <CalculatedRation />
-    </div>
-    <script src="./scripts/calculateRations.js"></script>
+    <TotalRationSize />
 </Container>
+<div class="temp">
+    <CalculatedRation />
+    <script src="./scripts/calculateRations.js"></script>
+</div>
 <style>
-    .left-panel {
-        font-size: 12px;
-        width: 50%;
-    }
-    .temp {
-        background-color: gray;
+    .ingredient_inputs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
     }
 </style>

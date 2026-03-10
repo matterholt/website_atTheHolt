@@ -5,7 +5,9 @@ const { defaultValue, inputId, cardLabel } = Astro.props;
 <div class:list={[`ingredient-card-${inputId}`, "cardLayout"]}>
     <h3 class="section-title">{cardLabel}</h3>
     {
-        inputId === "target" ? null : (
+        inputId === "target" ? (
+            <p class="ingredient-name-input">Desired</p>
+        ) : (
             <input
                 class="ingredient-name-input"
                 id={inputId}
@@ -19,7 +21,7 @@ const { defaultValue, inputId, cardLabel } = Astro.props;
     <div class="field-group">
         {
             inputId === "target" ? (
-                <label for="target">Desired Crude Protein:</label>
+                <label for={defaultValue?.inputValueId}>Crude Protein:</label>
             ) : (
                 <label for={defaultValue?.inputValueId}>Crude Protein:</label>
             )
@@ -40,34 +42,55 @@ const { defaultValue, inputId, cardLabel } = Astro.props;
 </div>
 
 <style>
+    .cardLayout {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 25px 1fr 1fr;
+    }
+    .ingredient-card-itemA {
+        padding-left: 7px;
+        border-left: 4px solid var(--primary-color);
+    }
+    .ingredient-card-itemB {
+        padding-left: 7px;
+        border-left: 4px solid var(--accent-bright-color);
+    }
+    .ingredient-card-target {
+        padding-left: 7px;
+        border-left: 4px solid var(--accent-dull-color);
+    }
+
     .field-group {
         display: flex;
-        display: flex;
-        flex-wrap: wrap;
-
+        flex-wrap: nowrap;
         align-items: center;
-        gap: 10px;
-        grid-column: span 2;
+        grid-row: var(--fieldGroup_gridRow, 3);
+
+        justify-content: flex-start;
+        gap: 15px;
     }
 
     label {
         display: block;
-        font-size: 0.8em;
+        font-size: 0.7em;
         font-weight: 700;
         color: var(--text);
         letter-spacing: 0.03em;
     }
-
     .input-row {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         input {
+            font-size: 0.65em;
             border: none;
             border-bottom: 1.5px solid var(--primary-color);
             background: transparent;
             text-align: center;
-            width: 43px;
+            width: 55px;
+            height: auto;
+            aspect-ratio: 16 / 9;
         }
     }
     .ingredient-card {
@@ -78,20 +101,16 @@ const { defaultValue, inputId, cardLabel } = Astro.props;
         position: relative;
     }
 
-    .ingredient-card.a {
-        border-left: 4px solid var(--green-field);
-    }
-    .ingredient-card.b {
-        border-left: 4px solid var(--rust);
-    }
     .input-suffix {
         font-family: "Source Code Pro", monospace;
-        font-size: 0.85rem;
+        font-size: 0.65em;
         color: var(--text-muted);
         white-space: nowrap;
-        min-width: 2rem;
+        min-width: 1rem;
     }
     .ingredient-name-input {
+        grid-row: 2;
+        grid-column: 1 / span 2;
         width: 100%;
         border: none;
         border-bottom: 1.5px solid var(--primary-color);
@@ -105,6 +124,7 @@ const { defaultValue, inputId, cardLabel } = Astro.props;
         outline: none;
         transition: border-color 0.2s;
     }
+
     .section-title {
         font-family: "Source Code Pro", monospace;
         font-size: 0.65rem;
@@ -114,10 +134,5 @@ const { defaultValue, inputId, cardLabel } = Astro.props;
         margin-bottom: 0.8rem;
         border-bottom: 1px solid var(--parchment);
         padding-bottom: 0.4rem;
-    }
-    .cardLayout {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        grid-template-rows: 1fr 1fr;
     }
 </style>
