@@ -28,7 +28,7 @@ import CalculatedRation from "./components/CalculatedRation.astro";
         />
 
         <IngredientContainer
-            cardLabel="Target"
+            cardLabel="Desired Target"
             defaultValue={{
                 inputValue: "14",
                 inputValueId: "cpTarget",
@@ -42,10 +42,51 @@ import CalculatedRation from "./components/CalculatedRation.astro";
     <CalculatedRation />
     <script src="./scripts/calculateRations.js"></script>
 </div>
-<style>
+<style is:global>
     .ingredient_inputs {
         display: flex;
         flex-wrap: wrap;
         gap: 25px;
+    }
+
+    .section-title {
+        font-family: "Source Code Pro", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 0.8rem;
+        border-bottom: 1px solid var(--parchment);
+        padding-bottom: 0.4rem;
+    }
+    .input-suffix {
+        font-family: "Source Code Pro", monospace;
+        font-size: 0.65em;
+        color: var(--text-muted);
+        white-space: nowrap;
+        min-width: 1rem;
+    }
+    .pearsonInput_label {
+        display: block;
+        font-size: 0.5em;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: 0.03em;
+    }
+    .input-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        input {
+            font-size: 0.65em;
+            border: none;
+            border-bottom: 1.5px solid var(--primary-color);
+            background: transparent;
+            text-align: center;
+            width: 65px;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 0px;
+        }
     }
 </style>

@@ -1,12 +1,19 @@
-function pearsonCalculation(cpA, cpB, cpT) {
-  const partsA = Math.abs(cpT - cpB);
-  const partsB = Math.abs(cpT - cpA);
+export function pearsonCalculation(
+  crudeProteinIngredientA,
+  crudeProteinIngredientB,
+  crudeProteinTarget,
+  totalRationSize,
+) {
+  const partsA = Math.abs(crudeProteinTarget - crudeProteinIngredientB);
+  const partsB = Math.abs(crudeProteinTarget - crudeProteinIngredientA);
   const totalParts = partsA + partsB;
   const pctA = (partsA / totalParts) * 100;
   const pctB = (partsB / totalParts) * 100;
-  const lbsA = (pctA / 100) * total;
-  const lbsB = (pctB / 100) * total;
-  const actualCP = (pctA / 100) * cpA + (pctB / 100) * cpB;
+  const lbsA = (pctA / 100) * totalRationSize;
+  const lbsB = (pctB / 100) * totalRationSize;
+  const actualCP =
+    (pctA / 100) * crudeProteinIngredientA +
+    (pctB / 100) * crudeProteinIngredientB;
 
   return {
     lbsOfIngredientA: lbsA,

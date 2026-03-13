@@ -4,8 +4,10 @@
 
 <div class="quantity-section" style="margin-top: 1rem">
     <div class="section-title">Total Ration Size</div>
-    <div class="field-group">
-        <label>Total Amount (lbs/day)</label>
+    <div class="quanityRationSize_fieldGroup">
+        <label class="pearsonInput_label"
+            >Total Amount<br /><span> (lbs/day) </span></label
+        >
         <div class="input-row">
             <input
                 type="number"
@@ -13,7 +15,7 @@
                 min="0"
                 step="1"
                 value="50"
-                placeholder="e.g. 50"
+                placeholder={`e.g. ${50}`}
             />
             <span class="input-suffix">lbs</span>
         </div>
@@ -33,8 +35,19 @@
     .quantity-section {
         background: white;
         border: 1px solid rgba(160, 98, 42, 0.15);
-        border-radius: 4px;
         padding: 1.2rem;
+        isplay: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .quanityRationSize_fieldGroup {
+        display: flex;
+        text-align: center;
+        gap: 10px;
+        span {
+            font-size: 0.7em;
+        }
     }
 
     .qty-results {
