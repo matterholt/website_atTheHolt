@@ -7,6 +7,7 @@ export function pearsonCalculation(
   const partsA = Math.abs(crudeProteinTarget - crudeProteinIngredientB);
   const partsB = Math.abs(crudeProteinTarget - crudeProteinIngredientA);
   const totalParts = partsA + partsB;
+
   const pctA = (partsA / totalParts) * 100;
   const pctB = (partsB / totalParts) * 100;
   const lbsA = (pctA / 100) * totalRationSize;
@@ -16,8 +17,17 @@ export function pearsonCalculation(
     (pctB / 100) * crudeProteinIngredientB;
 
   return {
+    partsA,
+    partsB,
     lbsOfIngredientA: lbsA,
     lbsOfIngredientB: lbsB,
     actualCP,
+    totalParts,
+    ingredientAPart: pctA,
+    ingredientBPart: pctB,
   };
+}
+
+function checkes(cpA, cpB, cpT) {
+  return (cpA < cpT && cpT < cpB) || (cpB < cpT && cpT < cpA);
 }
