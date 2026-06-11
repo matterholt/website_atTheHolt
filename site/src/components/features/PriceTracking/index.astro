@@ -1,0 +1,132 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+
+
+
+
+const dataEntry = [
+  {tagId: "14", weight:40, price:"72.00" , addToCart: false, isSold: false},
+  {tagId: "15", weight:40, price:"72.00", addToCart: false, isSold: false},
+  {tagId: "16", weight:40, price:"72.00", addToCart: false, isSold: false},
+  {tagId: "17", weight:40, price:"72.00", addToCart: true, isSold: true},
+  {tagId: "44", weight:40, price:"72.00", addToCart: true, isSold: false},
+  {tagId: "54", weight:40, price:"72.00", addToCart: false, isSold: false},
+  {tagId: "64", weight:40, price:"72.00", addToCart: false, isSold: false},
+
+]
+---
+
+<Layout>
+
+  <div>
+    <h3 id="cartAmount"></h3>
+    <h3 id="soldAmount"></h3>
+
+
+  </div>
+<div class="overflow-x-auto">
+  <table id="livestockSellingTable" class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th>tag id</th>
+        <th>weight</th>
+        <th>price</th>
+        <th>Sell</th>
+        <th>Sold</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 1 -->
+        {dataEntry.map((x, inx)=>
+
+
+        <tr>
+          <th>{inx + 1}</th>
+          <td>{x.tagId}</td>
+          <td>{x.weight}</td>
+          <td>{x.price}</td>
+          <td>
+            <input  type="checkbox" checked={x.addToCart} class="toggle" />
+          </td>
+           <td>
+            <input type="checkbox" checked={x.isSold}  class="toggle" />
+          </td>
+        </tr>
+
+        )
+        }
+       </tbody>
+  </table>
+</div>
+
+
+</Layout>
+
+<script>
+
+const domCartAmount =document.getElementById("cartAmount")
+const domSoldAmount =document.getElementById("soldAmount")
+
+const table= document.getElementById("livestockSellingTable")
+const rows = table.querySelectorAll('tbody tr');
+
+document.querySelectorAll('#livestockSellingTable .toggle').forEach(checkbox => {
+  checkbox.addEventListener('change', updateOnTable);
+});
+
+function updateOnTable(){
+
+const livestockSold = new Map()
+const livestockNotSold = new Map()
+
+  let soldAmount = 0
+  let cartAmount = 0
+
+
+
+
+rows.forEach(row => {
+
+
+  // const rowNum = row.querySelector('th').textContent;
+  const cells = row.querySelectorAll('td');
+  
+  const tagId = cells[0].textContent;
+  const weight = cells[1].textContent;
+  const price = cells[2].textContent;
+  const sellChecked = cells[3].querySelector('input').checked;
+  const soldChecked = cells[4].querySelector('input').checked;
+
+  if(soldChecked){
+      livestockSold.set(tagId, {weight,price,sellChecked,soldChecked})
+      soldAmount += Number(price)
+  }
+    if(sellChecked && !soldChecked ){
+     livestockNotSold.set(tagId, {weight,price,sellChecked,soldChecked})
+      cartAmount += Number(price)
+    }
+
+})
+  
+updateCart(cartAmount )
+updateSold(soldAmount  )
+}
+function updateCart (cartAmount){
+    domCartAmount.textContent = `Price Total: $${cartAmount.toFixed(2)}`;
+}
+
+function updateSold (soldAmount){
+    domSoldAmount.textContent = `Sold Total: $${soldAmount.toFixed(2)}`;
+}
+
+
+window.onload = function() { updateOnTable() };
+
+</script>
